@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-CryptoTradeSimulator/Pods-CryptoTradeSimulator-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/CoinpaprikaAPI/Coinpaprika.framework
+${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework
+${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework

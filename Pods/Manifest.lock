@@ -1,0 +1,34 @@
+PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - CoinpaprikaAPI (2.2):
+    - CoinpaprikaAPI/Client (= 2.2)
+  - CoinpaprikaAPI/Client (2.2):
+    - CoinpaprikaAPI/Networking
+  - CoinpaprikaAPI/Networking (2.2)
+  - SwiftChart (1.0.1)
+  - TinyConstraints (4.0.1)
+
+DEPENDENCIES:
+  - Charts
+  - CoinpaprikaAPI
+  - SwiftChart
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - CoinpaprikaAPI
+    - SwiftChart
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  CoinpaprikaAPI: 30093dd2ece7d8ecea8c0d8671f704e7a6095f0b
+  SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+
+PODFILE CHECKSUM: fc6a2abaccbcad8d74d74eebb78cb063d7466609
+
+COCOAPODS: 1.9.1
