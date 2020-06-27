@@ -13,12 +13,14 @@ protocol CoinManagerDelegate {
     
 }
 
+
+
 struct CoinManager {
     
     var delegate: CoinManagerDelegate?
     //var delegate: CoinManagerDelegate?
     
-    let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=20"
+    let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=30"
     
 
     let apiKey = "5c3cd1f0-54f3-430f-8397-d425000b8843"

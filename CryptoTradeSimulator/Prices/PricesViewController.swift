@@ -19,8 +19,6 @@ class PriceTableViewCell: UITableViewCell{
     
 class PricesViewController: UITableViewController, CoinManagerDelegate {
     
-    
-   
     func didUpdateView(values: [Data2]) {
         priceArray = values
       //  tableView.reloadData()
@@ -44,25 +42,10 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         super.viewDidLoad()
         coinManager.delegate = self
         tableView.reloadData()
-        //coinManager.getCoinPrice()
-        
-        
-        //print(priceArray)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     var priceArray: [Data2] = []
     // MARK: - Table view data source
-    /*
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return priceArray.count
-    }
-*/
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return priceArray.count
@@ -90,16 +73,8 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         cell.change24.text = String(format: "%.2f", listPrices.quote.USD.percent_change_24h)
         cell.change24.text = ("\(cell.change24.text!)%")
         
-            
-       if listPrices.quote.USD.percent_change_24h > 0 {
-        cell.change24.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
-        cell.change24.text = ("+\(cell.change24.text!)")
-       }else if listPrices.quote.USD.percent_change_24h < 0
-       {
-            cell.change24.textColor = UIColor(red: 0.72, green: 0.00, blue: 0.00, alpha: 1.00)
-       }else {
-        cell.change24.textColor = UIColor.gray
-        }
+        changesColors(value: listPrices.quote.USD.percent_change_24h, change: cell.change24)
+      
         //print(listPrices.name)
         return cell
         
@@ -111,22 +86,51 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         
     }
     
+    func changesColors(value: Double, change: UILabel){
+        if value > 0 {
+         change.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
+         change.text = ("+\(change.text!)")
+        }else if value < 0
+        {
+             change.textColor = UIColor(red: 0.72, green: 0.00, blue: 0.00, alpha: 1.00)
+        }else {
+         change.textColor = UIColor.gray
+         }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      let destinationVC = segue.destination as! CryptoDetailsViewController
         
        if let indexPath = tableView.indexPathForSelectedRow {
-        destinationVC.selectedCurrency = priceArray[indexPath.row].name
+        let cell = priceArray[indexPath.row]
+        //print(cell.name)
+        destinationVC.selectedCurrency = cell.name
+        destinationVC.name = String(cell.name)
+        destinationVC.change = String(format: "%.2f", cell.quote.USD.percent_change_24h)
+        destinationVC.change = String("\(destinationVC.change!)%")
+        destinationVC.price = String(format: "%.2f",cell.quote.USD.price)
+        destinationVC.price = String("\(destinationVC.price!)$")
+
+        destinationVC.symbol = cell.symbol
+        
+       
+        let url = URL(string: "https://s2.coinmarketcap.com/static/img/coins/64x64/\(cell.id).png")!
+        if let data = try? Data(contentsOf: url) {
+            // Create Image and Update Image View
+            destinationVC.logo = UIImage(data: data)
         }
+        
+        }
+        
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
         //repeat{
+        
              coinManager.getCoinPrice()
         repeat{
                    tableView.reloadData()
-                   
-                   print("to ja:", priceArray)
         } while priceArray.count == 0
        
     }

@@ -10,12 +10,10 @@ import Foundation
 
 struct Pocket {
     var name: String
-    var value: Float
     var number: Double
     
-    init(name: String, value: Float, number: Double) {
+    init(name: String, number: Double) {
         self.name = name
-        self.value = value
         self.number = number
     }
 }

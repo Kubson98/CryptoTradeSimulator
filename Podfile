@@ -7,7 +7,12 @@ target 'CryptoTradeSimulator' do
 
   # Pods for CryptoTradeSimulator
 	pod 'CoinpaprikaAPI'
-	pod 'Charts' 
-	pod "SwiftChart"
-	pod 'TinyConstraints'	
+	pod 'Charts'
+	pod 'TinyConstraints'
+	pod 'Firebase/Auth'
+	pod 'Firebase/Database'
+	pod 'Firebase/Firestore'
+
+	pod 'FacebookCore'
+	pod 'FacebookLogin'
 end
