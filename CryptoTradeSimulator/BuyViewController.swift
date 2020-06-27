@@ -149,7 +149,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     self.present(alert, animated: true)
                 
             case .failure(let error):
-                let alert = UIAlertController(title: "give more money from your mom", message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: "You don't have enough dollars to make this transaction", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
             }
@@ -168,7 +168,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                         self.present(alert, animated: true)
                     
                 case .failure(let error):
-                    let alert = UIAlertController(title: "give more money from your mom", message: "", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "You don't have enough cryptocurrencies to make this transaction", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true)
             }

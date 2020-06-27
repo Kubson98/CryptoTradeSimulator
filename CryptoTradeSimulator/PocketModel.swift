@@ -8,8 +8,8 @@
 
 import Foundation
 
-class PocketModel {
-    var name: String = ""
-    var value: Double = 0.0
-    var count: Double = 0.0
+struct PocketModel {
+    var name: String
+    var value: Double
+    var count: Double
 }

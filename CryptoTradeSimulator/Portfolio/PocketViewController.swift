@@ -64,13 +64,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.nameLabel.text = nameCrypto[indexPath.row]
         cell.valueLabel.text = String(format: "%.2f", countCrypto[indexPath.row] * listPrices.quote.USD.price)
         cell.valueLabel.text = "\(cell.valueLabel.text!)$"
-//        repeat{
-//        values.append(countCrypto[indexPath.row] * listPrices.quote.USD.price)
-//        } while(values.count == nameCrypto.count + 1)
-//
-//        let sumValues = values.reduce(0, +)
-//        accountLabel.text = String(format: "%.2f", sumValues)
-      //  print(cell.nameLabel.text!)
+
         return cell
         
     }
@@ -98,8 +92,9 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let key = self.ref.child(self.vc.name).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
                     let item = snapshot.value as? [String:Double]
                     self.ref.child("\(self.vc.name)/\(snapshot.key)").updateChildValues(["\(deal.nameCrypto)": (item!["\(deal.nameCrypto)"]!) + deal.countCrypto])
-                    var money = String(deal.countCrypto)
-                    completion(.success("successfully buy \(money) \(deal.nameCrypto)!"))
+                    let money = String(deal.countCrypto)
+                    let dollars = String(format: "%.2f", deal.countDollars)
+                    completion(.success("Successfully BOUGHT \(money) \(deal.nameCrypto) for \(dollars)$!"))
                 }
                 
             }
@@ -117,8 +112,9 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let keyDolars = self.ref.child(self.vc.name).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
                     let item = snapshot.value as? [String:Double]
                     self.ref.child("\(self.vc.name)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) + deal.countDollars])
-                    var money = String(deal.countCrypto)
-                    completion(.success("successfully sell \(money) \(deal.nameCrypto)!"))
+                    let money = String(deal.countCrypto)
+                    let dollars = String(format: "%.2f", deal.countDollars)
+                    completion(.success("Successfully SOLD \(money) \(deal.nameCrypto) for \(dollars)$!"))
                 }
             }
         }
@@ -127,38 +123,40 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func showPortfolio(){
         ref = Database.database().reference()
+        var x = 0
         handle = ref.child(vc.name).observe(.childAdded, with: { (snapshot) in
-            // if let item = snapshot.value as? String{
+
             if let item = snapshot.value as? [String:Double]{
                 for (key, value) in item{
-                   // print(item)
                     self.nameCrypto.append(key)
                     self.countCrypto.append(value)
+                    self.values.append(self.pricesArray[x].quote.USD.price * self.countCrypto[x])
+                    print(self.pricesArray[x].quote.USD.price)
+                    var sum = self.values.reduce(0,+)
+                    self.accountBalance.text = String(format: "%.2f",sum)
+                    self.accountBalance.text = String("\(self.accountBalance.text!)$")
+                    x = x + 1
+                     
                     self.tableView.reloadData()
+                    
                 }
-                
                 
             }
         }
         )
-        //print(pricesArray[0])
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         coinManager.getCoinPrice()
-        
         repeat{
             tableView.reloadData()
         } while pricesArray.count == 0
-        //createPortfiolio()
+        values.removeAll()
         nameCrypto.removeAll()
         countCrypto.removeAll()
-        //createPortfiolio()
         showPortfolio()
-        //        var sumValues = values.reduce(0, +)
-        //               accountLabel.text = String(format: "%.2f", sumValues)
-        //print(values)
+        
     }
     
     //    var helloWorldTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: Selector(("sayHello")), userInfo: nil, repeats: true)

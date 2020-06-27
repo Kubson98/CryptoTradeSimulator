@@ -354,7 +354,7 @@
             </objects>
             <point key="canvasLocation" x="2916" y="-288.30584707646182"/>
         </scene>
-        <!--Buy-->
+        <!--Buy&Sell-->
         <scene sceneID="i4Z-6V-QFw">
             <objects>
                 <viewController id="BVv-dq-1yF" customClass="BuyViewController" customModule="CryptoTradeSimulator" customModuleProvider="target" sceneMemberID="viewController">
@@ -409,7 +409,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="58X-uc-9La"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Buy" image="play.circle.fill" catalog="system" id="3Sf-FM-EGN"/>
+                    <tabBarItem key="tabBarItem" title="Buy&amp;Sell" image="creditcard.fill" catalog="system" id="3Sf-FM-EGN"/>
                     <connections>
                         <outlet property="buyButton" destination="lUB-Kl-57n" id="W0j-sI-ZsQ"/>
                         <outlet property="countCoins" destination="9zs-tw-DKz" id="Haz-nb-wqg"/>
@@ -442,7 +442,7 @@
         <scene sceneID="xMt-Ef-KYp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vHM-W6-hzz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Prices" image="paperplane.fill" catalog="system" id="62G-VR-3Mj"/>
+                    <tabBarItem key="tabBarItem" title="Prices" image="table.badge.more" catalog="system" id="62G-VR-3Mj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Oil-yc-tEO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -463,7 +463,7 @@
     </scenes>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="100"/>
-        <image name="paperplane.fill" catalog="system" width="128" height="121"/>
-        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="creditcard.fill" catalog="system" width="128" height="91"/>
+        <image name="table.badge.more" catalog="system" width="128" height="90"/>
     </resources>
 </document>
