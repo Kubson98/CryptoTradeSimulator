@@ -1,10 +1,3 @@
-//
-//  CryptoDetailsViewController.swift
-//  CryptoTradeSimulator
-//
-//  Created by Kuba on 08/06/2020.
-//  Copyright © 2020 Kuba. All rights reserved.
-//
 
 import UIKit
 
@@ -15,6 +8,7 @@ class CryptoDetailsViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
+    @IBOutlet weak var detailsView: UIView!
     
     var selectedCurrency: String = ""
     var selectedTime: Int = 1
@@ -37,6 +31,9 @@ class CryptoDetailsViewController: UIViewController {
     var cryptoDetails: [Data2] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        detailsView.layer.cornerRadius = 10
+        detailsView.clipsToBounds = true
+
         logoCrypto.image = logo
         nameCrypto.text = name
         priceLabel.text = price

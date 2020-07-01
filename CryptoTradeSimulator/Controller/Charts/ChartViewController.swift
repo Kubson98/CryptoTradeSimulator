@@ -1,11 +1,3 @@
-//
-//  ChartViewController.swift
-//  CryptoTradeSimulator
-//
-//  Created by Kuba on 30/05/2020.
-//  Copyright © 2020 Kuba. All rights reserved.
-//
-
 import UIKit
 import Coinpaprika
 import Charts
@@ -41,9 +33,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         lineChartView.xAxis.drawLabelsEnabled = false
         lineChartView.legend.enabled = false
         lineChartView.doubleTapToZoomEnabled = false
-        
         setData()
-        // Do any additional setup after loading the view.
     }
     
     var yValues: [ChartDataEntry] = []
@@ -83,7 +73,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                 }
             case .failure(let error):
                 print(error)
-                // Failure reason as error
             }
             
         }

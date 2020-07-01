@@ -1,10 +1,3 @@
-//
-//  chartModel.swift
-//  CryptoTradeSimulator
-//
-//  Created by Kuba on 11/06/2020.
-//  Copyright © 2020 Kuba. All rights reserved.
-//
 
 import Foundation
 

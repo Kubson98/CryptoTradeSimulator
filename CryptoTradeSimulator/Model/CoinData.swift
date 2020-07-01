@@ -1,10 +1,4 @@
-//
-//  CoinData.swift
-//  CryptoTradeSimulator
-//
-//  Created by Kuba on 26/05/2020.
-//  Copyright © 2020 Kuba. All rights reserved.
-//
+
 
 import Foundation
 

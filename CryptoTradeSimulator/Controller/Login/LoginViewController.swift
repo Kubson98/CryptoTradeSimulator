@@ -1,29 +1,16 @@
-//
-//  LoginViewController.swift
-//  CryptoTradeSimulator
-//
-//  Created by Kuba on 15/06/2020.
-//  Copyright © 2020 Kuba. All rights reserved.
-//
 
 import UIKit
 import FBSDKLoginKit
 import Firebase
 
-//protocol loginDelegate {
-//    func sendLogin(name: String)
-//}
-
 class LoginViewController: UIViewController, LoginButtonDelegate {
- 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     
-    //var delegate: loginDelegate?
-  var name: String = (Auth.auth().currentUser?.uid)!
-  //  var vc = PocketViewController()
+
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if error != nil {
-            print("niestety",error)
             return
         }
         print("SUCCESS")
@@ -37,12 +24,10 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         }
         GraphRequest(graphPath: "/me", parameters: ["fields":"id,name,email"]).start { (connection, result, error) in
             if error != nil {
-                print("ups")
                 return
             }
             
             self.performSegue(withIdentifier: "goToApp", sender: self)
-            print(result)
             
         }
     }
@@ -58,34 +43,28 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         loginButton.center = view.center
             view.addSubview(loginButton)
         loginButton.delegate = self
-//        delegate?.sendLogin(name: "kuba")
-        
-        
-        
-          
-        
-            
-       // print(Auth.auth().currentUser?.displayName) nazwa
-        // Do any additional setup after loading the view.
+
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        if AccessToken.current != nil {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                self.performSegue(withIdentifier: "goToApp", sender: self)
-            })
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text{
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (authresult, error) in
+                  if let e = error {
+                      print(e)
+                  } else {
+                              DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                                          self.performSegue(withIdentifier: "goToApp", sender: self)
+                                          })
+                  }
+
         }
     }
-    
-              
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+    override func viewWillAppear(_ animated: Bool) {
+        AccessToken.current = nil
+        //print(Auth.auth().currentUser?.uid)
+    }
+
 
 }
