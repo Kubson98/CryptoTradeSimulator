@@ -104,15 +104,13 @@
 		8C4512CF247A7D6C00CC763D /* CryptoTradeSimulator */ = {
 			isa = PBXGroup;
 			children = (
-				8C6E7C2A24ACADA9000E6F98 /* Controller */,
-				8C6E7C2924ACAD9E000E6F98 /* View */,
-				8C4512D6247A7D6C00CC763D /* Main.storyboard */,
-				8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */,
 				8C8A943D247C28C100C91941 /* Model */,
+				8C6E7C2924ACAD9E000E6F98 /* View */,
+				8C6E7C2A24ACADA9000E6F98 /* Controller */,
+				8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */,
 				8C4512D0247A7D6C00CC763D /* AppDelegate.swift */,
 				8C4512D2247A7D6C00CC763D /* SceneDelegate.swift */,
 				8C4512DC247A7D6F00CC763D /* Assets.xcassets */,
-				8C4512DE247A7D6F00CC763D /* LaunchScreen.storyboard */,
 				8C4512E1247A7D6F00CC763D /* Info.plist */,
 				8C8A9437247C028800C91941 /* linki */,
 			);
@@ -157,6 +155,8 @@
 		8C6E7C2924ACAD9E000E6F98 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C4512D6247A7D6C00CC763D /* Main.storyboard */,
+				8C4512DE247A7D6F00CC763D /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
