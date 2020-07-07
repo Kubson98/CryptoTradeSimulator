@@ -4,10 +4,13 @@ import Coinpaprika
 import FirebaseDatabase
 import Firebase
 import FBSDKLoginKit
+import StoreKit
 
 struct MyCustomError : Error {}
 
-class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoinManagerDelegate {
+class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoinManagerDelegate, SKPaymentTransactionObserver {
+
+    
     
     @IBOutlet weak var accountBalance: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -18,6 +21,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         pricesArray = values
         pricesArray.insert(Data2(name: "USD", id: -0, symbol: "$", quote: CryptoTradeSimulator.Quote(USD: CryptoTradeSimulator.Usd(price: 1.0, percent_change_1h: 0.0, percent_change_24h: 0.0))), at: 0)
     }
+    
+    let productID = "Kuba.CryptoTradeSimulator.ExtraMoney"
     var vcPrices = PricesViewController()
     var userId = Auth.auth().currentUser?.uid
     var coinManager = CoinManager()
@@ -34,7 +39,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         balanceView.layer.shadowRadius = 4
         balanceView.layer.shadowOpacity = 0.5
         balanceView.layer.shadowOffset = CGSize(width: 0, height: 0)
-
+        SKPaymentQueue.default().add(self)
+        
         coinManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -145,6 +151,31 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         )
     }
+    
+    
+    @IBAction func buyMoney(_ sender: UIButton) {
+    
+        if SKPaymentQueue.canMakePayments(){
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = productID
+            SKPaymentQueue.default().add(paymentRequest)
+        }
+    
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions{
+            if transaction.transactionState == .purchased{
+                print("Transaction Successful")
+                SKPaymentQueue.default().finishTransaction(transaction)
+            }else if transaction.transactionState == .failed {
+                print("Transaction Failed")
+                SKPaymentQueue.default().finishTransaction(transaction)
+
+            }
+            }
+        }
+    
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
          do {

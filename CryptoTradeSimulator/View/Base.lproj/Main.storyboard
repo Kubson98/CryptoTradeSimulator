@@ -22,8 +22,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gk3-H5-2bq">
                                 <rect key="frame" x="21" y="27" width="333" height="171"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Portfolio Balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zo3-lH-sgo">
-                                        <rect key="frame" x="31" y="8" width="224" height="39"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Portfolio Balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zo3-lH-sgo">
+                                        <rect key="frame" x="0.0" y="8" width="153" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -46,17 +47,24 @@
                                             <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yDX-oI-vuL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUv-AP-OeP">
+                                        <rect key="frame" x="8" y="124" width="110" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Get More $$$">
+                                            <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buyMoney:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x8B-SM-Y1U"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="1yh-D5-lQW" firstAttribute="top" secondItem="Gk3-H5-2bq" secondAttribute="top" constant="34" id="7nj-O3-Ink"/>
-                                    <constraint firstAttribute="bottom" secondItem="zo3-lH-sgo" secondAttribute="bottom" constant="124" id="bSb-KO-ZDc"/>
                                     <constraint firstAttribute="bottom" secondItem="1yh-D5-lQW" secondAttribute="bottom" constant="35" id="cer-KE-hnU"/>
                                     <constraint firstItem="1yh-D5-lQW" firstAttribute="leading" secondItem="Gk3-H5-2bq" secondAttribute="leading" constant="31" id="j1w-SN-II0"/>
                                     <constraint firstAttribute="trailing" secondItem="1yh-D5-lQW" secondAttribute="trailing" constant="8" id="kkD-dk-scT"/>
-                                    <constraint firstItem="zo3-lH-sgo" firstAttribute="leading" secondItem="Gk3-H5-2bq" secondAttribute="leading" constant="31" id="tpb-nW-LfO"/>
-                                    <constraint firstItem="zo3-lH-sgo" firstAttribute="top" secondItem="Gk3-H5-2bq" secondAttribute="top" constant="8" id="zfa-wE-IB1"/>
-                                    <constraint firstAttribute="trailing" secondItem="zo3-lH-sgo" secondAttribute="trailing" constant="78" id="zyq-dK-J5b"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -475,17 +483,17 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WF7-M0-uft">
                                         <rect key="frame" x="0.0" y="158.5" width="375" height="142.5"/>
                                         <subviews>
-                                            <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQn-1r-bfK">
-                                                <rect key="frame" x="23" y="22" width="128" height="117"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            </pickerView>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Count" textAlignment="center" minimumFontSize="21" translatesAutoresizingMaskIntoConstraints="NO" id="9zs-tw-DKz">
-                                                <rect key="frame" x="165" y="28" width="190" height="97"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Count" textAlignment="center" minimumFontSize="21" translatesAutoresizingMaskIntoConstraints="NO" id="9zs-tw-DKz">
+                                                <rect key="frame" x="158" y="28" width="190" height="97"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="73"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
                                             </textField>
+                                            <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQn-1r-bfK">
+                                                <rect key="frame" x="8" y="12" width="128" height="117"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </pickerView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -528,7 +536,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUB-Kl-57n">
-                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="47"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="20"/>
                                                         <state key="normal" title="Buy">

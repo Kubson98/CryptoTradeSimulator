@@ -10,6 +10,7 @@
 		61076034E27001072273B4E7 /* Pods_CryptoTradeSimulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EBD80731DDF7FB52929347 /* Pods_CryptoTradeSimulator.framework */; };
 		8C0F851B24964D1B00DFDF6B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */; };
 		8C3971D92492789B00545826 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3971D82492789B00545826 /* ChartModel.swift */; };
+		8C3F161524B4B24900050D3C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3F161424B4B24900050D3C /* StoreKit.framework */; };
 		8C4512D1247A7D6C00CC763D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512D0247A7D6C00CC763D /* AppDelegate.swift */; };
 		8C4512D3247A7D6C00CC763D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512D2247A7D6C00CC763D /* SceneDelegate.swift */; };
 		8C4512D5247A7D6C00CC763D /* PocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512D4247A7D6C00CC763D /* PocketViewController.swift */; };
@@ -37,6 +38,7 @@
 		64B001E0D543FF3C0677B704 /* Pods-CryptoTradeSimulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTradeSimulator.release.xcconfig"; path = "Target Support Files/Pods-CryptoTradeSimulator/Pods-CryptoTradeSimulator.release.xcconfig"; sourceTree = "<group>"; };
 		8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8C3971D82492789B00545826 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
+		8C3F161424B4B24900050D3C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8C4512CD247A7D6C00CC763D /* CryptoTradeSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTradeSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C4512D0247A7D6C00CC763D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C4512D2247A7D6C00CC763D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61076034E27001072273B4E7 /* Pods_CryptoTradeSimulator.framework in Frameworks */,
+				8C3F161524B4B24900050D3C /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +209,7 @@
 		DB759CB5E1BDBA82BC5A973E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C3F161424B4B24900050D3C /* StoreKit.framework */,
 				43EBD80731DDF7FB52929347 /* Pods_CryptoTradeSimulator.framework */,
 			);
 			name = Frameworks;
