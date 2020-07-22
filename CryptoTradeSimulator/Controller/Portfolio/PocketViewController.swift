@@ -154,13 +154,12 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func buyMoney(_ sender: UIButton) {
-    
+        
         if SKPaymentQueue.canMakePayments(){
             let paymentRequest = SKMutablePayment()
             paymentRequest.productIdentifier = productID
             SKPaymentQueue.default().add(paymentRequest)
         }
-    
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -168,6 +167,11 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if transaction.transactionState == .purchased{
                 print("Transaction Successful")
                 SKPaymentQueue.default().finishTransaction(transaction)
+                ref = Database.database().reference()
+                let keyDolars = self.ref.child(self.userId!).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
+                let item = snapshot.value as? [String:Double]
+                self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) + 1000.0])
+                }
             }else if transaction.transactionState == .failed {
                 print("Transaction Failed")
                 SKPaymentQueue.default().finishTransaction(transaction)
@@ -201,12 +205,14 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.createPortfiolio()
         }
         }
+        showPortfolio()
+    }
+ 
+    override func viewWillDisappear(_ animated: Bool) {
+        pricesArray.removeAll()
         values.removeAll()
         nameCrypto.removeAll()
         countCrypto.removeAll()
-        showPortfolio()
-        
     }
-    
 }
 
