@@ -12,7 +12,15 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var sellButtonView: UIView!
     
     func didUpdateView(values: [Data2]) {
-                myLogos = values
+     var copyArray = values
+         let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
+        for x in 0..<copyArray.count{
+              for y in 0..<myArray.count {
+              if copyArray[x].id == myArray[y] {
+                  myLogos.append(copyArray[x])
+              }
+              }
+    }
     }
     
     @IBOutlet weak var logoPickerView: UIPickerView!
@@ -45,7 +53,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 14
+        return 17
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
@@ -150,4 +158,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         buyButtonView.isHidden = true
         sellButtonView.isHidden = true
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        myLogos.removeAll()
+//    }
 }

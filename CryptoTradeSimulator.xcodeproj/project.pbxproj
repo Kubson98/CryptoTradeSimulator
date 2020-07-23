@@ -17,7 +17,6 @@
 		8C4512D8247A7D6C00CC763D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C4512D6247A7D6C00CC763D /* Main.storyboard */; };
 		8C4512DD247A7D6F00CC763D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C4512DC247A7D6F00CC763D /* Assets.xcassets */; };
 		8C4512E0247A7D6F00CC763D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C4512DE247A7D6F00CC763D /* LaunchScreen.storyboard */; };
-		8C4512E8247A920600CC763D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512E7247A920600CC763D /* Model.swift */; };
 		8C4512EB247A951100CC763D /* PocketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512E9247A951100CC763D /* PocketTableViewCell.swift */; };
 		8C4512EC247A951100CC763D /* PocketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4512EA247A951100CC763D /* PocketTableViewCell.xib */; };
 		8C4512F0247AA08200CC763D /* PricesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512EE247AA08200CC763D /* PricesViewController.swift */; };
@@ -29,7 +28,6 @@
 		8C8A943F247C28E100C91941 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8A943E247C28E100C91941 /* Manager.swift */; };
 		8C8D0921248268B50019B5BE /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8D0920248268B50019B5BE /* ChartViewController.swift */; };
 		8CA1580D24AA3D81001239FB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1580C24AA3D81001239FB /* RegisterViewController.swift */; };
-		8CF12C4724A748FD00202218 /* PocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF12C4624A748FD00202218 /* PocketModel.swift */; };
 		8CF536B7249775C5006CE2BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF536B6249775C5006CE2BF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +45,6 @@
 		8C4512DC247A7D6F00CC763D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C4512DF247A7D6F00CC763D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C4512E1247A7D6F00CC763D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C4512E7247A920600CC763D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8C4512E9247A951100CC763D /* PocketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketTableViewCell.swift; sourceTree = "<group>"; };
 		8C4512EA247A951100CC763D /* PocketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PocketTableViewCell.xib; sourceTree = "<group>"; };
 		8C4512EE247AA08200CC763D /* PricesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesViewController.swift; sourceTree = "<group>"; };
@@ -59,7 +56,6 @@
 		8C8A943E247C28E100C91941 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		8C8D0920248268B50019B5BE /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		8CA1580C24AA3D81001239FB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		8CF12C4624A748FD00202218 /* PocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketModel.swift; sourceTree = "<group>"; };
 		8CF536B6249775C5006CE2BF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CC5587608D448C8293119549 /* Pods-CryptoTradeSimulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTradeSimulator.debug.xcconfig"; path = "Target Support Files/Pods-CryptoTradeSimulator/Pods-CryptoTradeSimulator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,10 +192,8 @@
 		8C8A943D247C28C100C91941 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8C4512E7247A920600CC763D /* Model.swift */,
 				8C8A943E247C28E100C91941 /* Manager.swift */,
 				8C673870247D703000ABB4F3 /* CoinData.swift */,
-				8CF12C4624A748FD00202218 /* PocketModel.swift */,
 				8C3971D82492789B00545826 /* ChartModel.swift */,
 				8C67380924A4FFF900929E61 /* DealModel.swift */,
 			);
@@ -333,10 +327,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C4512E8247A920600CC763D /* Model.swift in Sources */,
 				8C4512F0247AA08200CC763D /* PricesViewController.swift in Sources */,
 				8C3971D92492789B00545826 /* ChartModel.swift in Sources */,
-				8CF12C4724A748FD00202218 /* PocketModel.swift in Sources */,
 				8C7F7C08248E964A00BC2F89 /* CryptoDetailsViewController.swift in Sources */,
 				8C673871247D703000ABB4F3 /* CoinData.swift in Sources */,
 				8C701C26249CC4A8005FF5A5 /* BuyViewController.swift in Sources */,

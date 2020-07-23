@@ -50,8 +50,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         set1.drawCirclesEnabled = false
         set1.lineWidth = 3
         set1.setColor(.systemBlue)
-        set1.drawHorizontalHighlightIndicatorEnabled = false
-        
+        set1.setDrawHighlightIndicators(false)
         
         
         let data = LineChartData(dataSet: set1)
