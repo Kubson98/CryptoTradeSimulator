@@ -12,16 +12,15 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var sellButtonView: UIView!
     
     func didUpdateView(values: [Data2]) {
-     var copyArray = values
-         let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
-        for x in 0..<copyArray.count{
-              for y in 0..<myArray.count {
-              if copyArray[x].id == myArray[y] {
-                  myLogos.append(copyArray[x])
-              }
-              }
-    }
-    }
+        var copyArray = values
+        let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
+        for y in 0..<myArray.count{
+            for x in 0..<60 {
+                if copyArray[x].id == myArray[y] {
+                    myLogos.append(copyArray[x])
+                }
+            }
+        }    }
     
     @IBOutlet weak var logoPickerView: UIPickerView!
     var price = Double()
@@ -31,14 +30,14 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          vc.delegate = self
+        vc.delegate = self
         logoPickerView.delegate = self
         logoPickerView.dataSource = self
         resultPrice.delegate = self
         countCoins.delegate = self
         buttonView(button: buyButtonView)
         buttonView(button: sellButtonView)
-        }
+    }
     
     func buttonView(button: UIView){
         button.layer.cornerRadius = 20
@@ -64,7 +63,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return 70
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-     
+        
         return myLogos[row].name
     }
     
@@ -75,7 +74,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         if let data = try? Data(contentsOf: url) {
             myImageView.image = UIImage(data: data)!
-         }
+        }
         
         myView.addSubview(myImageView)
         
@@ -87,9 +86,9 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         price = myLogos[row].quote.USD.price
         if let count = Double(countCoins.text!) {
             resultPrice.text = String(format: "%.2f", count*price)
-          
-                      }
-    
+            
+        }
+        
     }
     
     
@@ -101,10 +100,10 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-         if let count = Double(countCoins.text!){
-                   resultPrice.text = String(format: "%.2f", count*price)
-                    buyButtonView.isHidden = false
-                    sellButtonView.isHidden = false
+        if let count = Double(countCoins.text!){
+            resultPrice.text = String(format: "%.2f", count*price)
+            buyButtonView.isHidden = false
+            sellButtonView.isHidden = false
         }
         
         if countCoins.text == "" {
@@ -137,9 +136,9 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             switch result {
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
-                    
-                case .failure(let error):
-
+                
+            case .failure(let error):
+                
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough cryptocurrencies to make this transaction")
             }
             
@@ -149,7 +148,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         vc.getCoinPrice()
         repeat{
             logoPickerView.reloadAllComponents()
-               
+            
         } while myLogos.count == 0
         logoPickerView.selectRow(0, inComponent: 0, animated: false)
         pickerView(logoPickerView, didSelectRow: 0, inComponent: 0)
@@ -158,7 +157,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         buyButtonView.isHidden = true
         sellButtonView.isHidden = true
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        myLogos.removeAll()
-//    }
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //        myLogos.removeAll()
+    //    }
 }
