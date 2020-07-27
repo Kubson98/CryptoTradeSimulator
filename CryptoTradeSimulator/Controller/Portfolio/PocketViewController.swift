@@ -70,7 +70,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: - CREATE PORTFOLIO
     
-    func createPortfiolio(){
+    func createPortfiolio() {
         ref = Database.database().reference()
         ref.child(userId!).childByAutoId().setValue([pricesArray[0].name: 10000.0])
         for x in 1..<pricesArray.count {
@@ -83,14 +83,13 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: - BUY FUNCTION
     
-    func buy(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void){
+    func buy(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void) {
         ref = Database.database().reference()
         let keyDolars = ref.child(userId!).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
             let item = snapshot.value as? [String:Double]
             if ((item!["USD"]!) - deal.countDollars) < 0.0 {
                 completion(.failure(MyCustomError()))
             } else {
-                
                 self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) - deal.countDollars])
                 let key = self.ref.child(self.userId!).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
                     let item = snapshot.value as? [String:Double]
@@ -105,7 +104,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: - SELL FUNCTION
     
-    func sell(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void){
+    func sell(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void) {
         ref = Database.database().reference()
         let key = ref.child(userId!).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
             let item = snapshot.value as? [String:Double]
@@ -126,13 +125,13 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //MARK: - SHOW PORTFOLIO
     
-    func showPortfolio(){
+    func showPortfolio() {
         ref = Database.database().reference()
         var x = 0
         handle = ref.child(userId!).observe(.childAdded, with: { (snapshot) in
             
-            if let item = snapshot.value as? [String:Double]{
-                for (key, value) in item{
+            if let item = snapshot.value as? [String:Double] {
+                for (key, value) in item {
                     self.nameCrypto.append(key)
                     self.countCrypto.append(value)
                     self.values.append(self.pricesArray[x].quote.USD.price * self.countCrypto[x])
@@ -152,7 +151,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - BUY MORE MONEY (APPLE PAY)
     
     @IBAction func buyMoney(_ sender: UIButton) {
-        if SKPaymentQueue.canMakePayments(){
+        if SKPaymentQueue.canMakePayments() {
             let paymentRequest = SKMutablePayment()
             paymentRequest.productIdentifier = productID
             SKPaymentQueue.default().add(paymentRequest)
@@ -161,7 +160,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions{
-            if transaction.transactionState == .purchased{
+            if transaction.transactionState == .purchased {
                 print("Transaction Successful")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 ref = Database.database().reference()

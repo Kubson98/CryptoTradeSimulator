@@ -2,7 +2,7 @@
 import UIKit
 import SCLAlertView
 
-class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CoinManagerDelegate, UITextFieldDelegate{
+class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CoinManagerDelegate, UITextFieldDelegate {
     @IBOutlet weak var countCoins: UITextField!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var nameCryptoCurr: UILabel!
@@ -28,7 +28,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     //MARK: - BUTTONVIEW CONFIGURE
     
-    func buttonView(button: UIView){
+    func buttonView(button: UIView) {
         button.layer.cornerRadius = 20
         button.layer.shadowColor = UIColor.systemGray2.cgColor
         button.layer.shadowRadius = 4
@@ -111,7 +111,6 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough dollars to make this transaction")
             }
         }
-        
     }
     
     //MARK: - SELL BUTTON PRESSED
@@ -135,7 +134,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func didUpdateView(values: [Data2]) {
         let copyArray = values
         let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
-        for y in 0..<myArray.count{
+        for y in 0..<myArray.count {
             for x in 0..<60 {
                 if copyArray[x].id == myArray[y] {
                     myLogos.append(copyArray[x])
@@ -148,7 +147,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         vc.getCoinPrice()
-        repeat{
+        repeat {
             logoPickerView.reloadAllComponents()
         } while myLogos.count == 0
         logoPickerView.selectRow(0, inComponent: 0, animated: false)

@@ -14,15 +14,15 @@ struct CoinManager {
     
     //MARK: - URL ADRESS
     
-    func getCoinPrice(){
+    func getCoinPrice() {
         let urlString = "\(baseURL)&CMC_PRO_API_KEY=\(apiKey)&convert=USD"
         self.performRequest(urlString: urlString)
     }
     
     //MARK: - URL REQUEST
     
-    func performRequest(urlString: String){
-        if let url = URL(string: urlString){
+    func performRequest(urlString: String) {
+        if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
@@ -41,7 +41,7 @@ struct CoinManager {
     
     //MARK: - JSON CONNECT
     
-    func parseJSON(coinData: Data) -> [Data2]{
+    func parseJSON(coinData: Data) -> [Data2] {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(CoinData.self, from: coinData)

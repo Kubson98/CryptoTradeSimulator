@@ -36,8 +36,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     
     var yValues: [ChartDataEntry] = []
     
-    func setData(){
-        
+    func setData() {
         let set1 = LineChartDataSet(entries: yValues, label: nil)
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
@@ -55,8 +54,8 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         Coinpaprika.API.coins().perform { (response) in
             switch response {
             case .success(let coins):
-                for x in 0..<coins.count{
-                    if nameCMC == coins[x].name{
+                for x in 0..<coins.count {
+                    if nameCMC == coins[x].name {
                         completion(.success(coins[x].id))
                     }
                 }
@@ -79,7 +78,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         Coinpaprika.API.tickerHistory(id: id , start: futureDate! , end: Date(), limit: 1000, quote: QuoteCurrency.usd, interval: API.TickerHistoryInterval(rawValue: time.interval)!).perform { (response) in
             switch response {
             case .success(let tickerhistory):
-                for n in 0..<tickerhistory.count{
+                for n in 0..<tickerhistory.count {
                     let x1 = tickerhistory[n].timestamp
                     let priceDouble = Double(truncating: tickerhistory[n].price as NSNumber)
                     let timeInterval = x1.timeIntervalSince1970
@@ -106,7 +105,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
     
-    func showChart(time: ChartModel){
+    func showChart(time: ChartModel) {
         getID(nameCMC: selectedCurrency) { result in
             switch result {
             case .success(let id):

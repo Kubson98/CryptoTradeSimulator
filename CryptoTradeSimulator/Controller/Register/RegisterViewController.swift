@@ -18,8 +18,8 @@ class RegisterViewController: UIViewController {
     
     //MARK: - Register Button Pressed
     @IBAction func registerPressed(_ sender: UIButton) {
-        if let email = emailTextField.text, let password = passwordTextField.text{
-            if passwordTextField.text == repeatPasswordTextField.text{
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            if passwordTextField.text == repeatPasswordTextField.text {
                 Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                     if let e = error {
                         print(e)

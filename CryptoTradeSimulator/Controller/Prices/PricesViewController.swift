@@ -57,12 +57,11 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         
     }
     //MARK: - CHANGE COLORS CHANGE 24H PRICE
-    func changesColors(value: Double, change: UILabel){
+    func changesColors(value: Double, change: UILabel) {
         if value > 0 {
             change.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
             change.text = ("+\(change.text!)")
-        } else if value < 0
-        {
+        } else if value < 0 {
             change.textColor = UIColor(red: 0.72, green: 0.00, blue: 0.00, alpha: 1.00)
         } else {
             change.textColor = UIColor.gray
@@ -82,13 +81,10 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
             destinationVC.change = String("\(destinationVC.change!)%")
             destinationVC.price = String(format: "%.2f",cell.quote.USD.price)
             destinationVC.price = String("\(destinationVC.price!)$")
-            
             destinationVC.symbol = cell.symbol
-            
-            
+        
             let url = URL(string: "https://s2.coinmarketcap.com/static/img/coins/64x64/\(cell.id).png")!
             if let data = try? Data(contentsOf: url) {
-                
                 destinationVC.logo = UIImage(data: data)
             }
         }
