@@ -33,6 +33,7 @@ class LoginViewController: UIViewController{
             }
         }
     }
+    //MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
         AccessToken.current = nil
     }
