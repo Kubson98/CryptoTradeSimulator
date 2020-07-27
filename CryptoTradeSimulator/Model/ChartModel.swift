@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct ChartModel{
+struct ChartModel {
     var hours: Int
     var days: Int
     var months: Int
