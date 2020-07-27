@@ -22,8 +22,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var pricesArray: [Data2] = []
     var nameCrypto: [String] = []
     var countCrypto: [Double] = []
-    var values: [Double] = []
-    var ids: [Int] = []
+    var valuesArray: [Double] = []
+    var idsArray: [Int] = []
     var ref = DatabaseReference()
     var handle:DatabaseHandle?
     override func viewDidLoad() {
@@ -134,8 +134,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for (key, value) in item {
                     self.nameCrypto.append(key)
                     self.countCrypto.append(value)
-                    self.values.append(self.pricesArray[x].quote.USD.price * self.countCrypto[x])
-                    var sum = self.values.reduce(0,+)
+                    self.valuesArray.append(self.pricesArray[x].quote.USD.price * self.countCrypto[x])
+                    var sum = self.valuesArray.reduce(0,+)
                     self.accountBalance.text = String(format: "%.2f",sum)
                     self.accountBalance.text = String("\(self.accountBalance.text!)$")
                     x = x + 1
@@ -221,7 +221,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - VIEW WILL DISAPPEAR
     override func viewWillDisappear(_ animated: Bool) {
         pricesArray.removeAll()
-        values.removeAll()
+        valuesArray.removeAll()
         nameCrypto.removeAll()
         countCrypto.removeAll()
     }
