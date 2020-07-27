@@ -326,6 +326,7 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
   - SCLAlertView (0.8)
+  - SwiftLint (0.39.2)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
@@ -336,6 +337,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - IQKeyboardManagerSwift
   - SCLAlertView
+  - SwiftLint
   - TinyConstraints
 
 SPEC REPOS:
@@ -363,6 +365,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SCLAlertView
+    - SwiftLint
     - TinyConstraints
 
 SPEC CHECKSUMS:
@@ -389,8 +392,9 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: 4a20a4e61bbe80571f5ff7de224ff2f35b4a9a02
+PODFILE CHECKSUM: 96fbc4ce9e06c3e71445368765eba4d41c6a454f
 
 COCOAPODS: 1.9.1

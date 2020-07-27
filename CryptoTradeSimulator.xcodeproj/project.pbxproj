@@ -214,6 +214,7 @@
 			buildConfigurationList = 8C4512E4247A7D6F00CC763D /* Build configuration list for PBXNativeTarget "CryptoTradeSimulator" */;
 			buildPhases = (
 				C7C6FC2033091D7C428C80CB /* [CP] Check Pods Manifest.lock */,
+				8CDB473324CF64F2004B7C6A /* ShellScript */,
 				8C4512C9247A7D6C00CC763D /* Sources */,
 				8C4512CA247A7D6C00CC763D /* Frameworks */,
 				8C4512CB247A7D6C00CC763D /* Resources */,
@@ -277,6 +278,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8CDB473324CF64F2004B7C6A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		C7C6FC2033091D7C428C80CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

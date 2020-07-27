@@ -1,16 +1,13 @@
-
-
 import UIKit
 import Coinpaprika
 import Charts
 import TinyConstraints
 
-
 class ChartViewController: UIViewController, ChartViewDelegate {
     
     var selectedCurrency: String = ""
     var changeTime = -365
-    var highlight: Highlight? = nil
+    var highlight: Highlight?
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .systemBackground
@@ -49,7 +46,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         
     }
     
-    
     func getID(nameCMC: String, _ completion: @escaping (Result<String, Error>) -> Void) {
         Coinpaprika.API.coins().perform { (response) in
             switch response {
@@ -65,7 +61,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    func test(id:String, time: ChartModel) {
+    func test(id: String, time: ChartModel) {
         
         var dateComponent = DateComponents()
         dateComponent.month = time.months
@@ -75,7 +71,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         let currentDate = Date()
         let futureDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
         
-        Coinpaprika.API.tickerHistory(id: id , start: futureDate! , end: Date(), limit: 1000, quote: QuoteCurrency.usd, interval: API.TickerHistoryInterval(rawValue: time.interval)!).perform { (response) in
+        Coinpaprika.API.tickerHistory(id: id, start: futureDate!, end: Date(), limit: 1000, quote: QuoteCurrency.usd, interval: API.TickerHistoryInterval(rawValue: time.interval)!).perform { (response) in
             switch response {
             case .success(let tickerhistory):
                 for n in 0..<tickerhistory.count {
@@ -91,7 +87,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                 }
                 self.setData()
                 
-            case .failure(_):
+            case .failure:
                 print(Error.self)
             }
         }
@@ -99,7 +95,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     }
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
-        ChartModel(hours: -24, days: 0, months: 0,  years: 0, interval: "5m"),
+        ChartModel(hours: -24, days: 0, months: 0, years: 0, interval: "5m"),
         ChartModel(hours: 0, days: -7, months: 0, years: 0, interval: "30m"),
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
@@ -117,10 +113,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        showChart(time:chartTime[1])
+        showChart(time: chartTime[1])
     }
 }
-
-

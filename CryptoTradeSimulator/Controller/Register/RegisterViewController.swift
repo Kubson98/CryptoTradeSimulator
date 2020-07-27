@@ -1,4 +1,3 @@
-
 import UIKit
 import Firebase
 import SCLAlertView
@@ -16,11 +15,11 @@ class RegisterViewController: UIViewController {
         buyVC.buttonView(button: registerButton)
     }
     
-    //MARK: - Register Button Pressed
+    // MARK: - Register Button Pressed
     @IBAction func registerPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             if passwordTextField.text == repeatPasswordTextField.text {
-                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                Auth.auth().createUser(withEmail: email, password: password) { _, error in
                     if let e = error {
                         print(e)
                     } else {
@@ -32,7 +31,7 @@ class RegisterViewController: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                             self.performSegue(withIdentifier: "reggoToApp", sender: self)
                         })
-                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
+                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (_) in
                             alert.close()
                         }
                     }

@@ -1,13 +1,10 @@
-
-
 import UIKit
 import Coinpaprika
 import FirebaseDatabase
 import Firebase
 import StoreKit
 
-struct MyCustomError : Error {}
-
+struct MyCustomError: Error {}
 
 class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoinManagerDelegate, SKPaymentTransactionObserver {
     @IBOutlet weak var accountBalance: UILabel!
@@ -25,7 +22,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var valuesArray: [Double] = []
     var idsArray: [Int] = []
     var ref = DatabaseReference()
-    var handle:DatabaseHandle?
+    var handle: DatabaseHandle?
     override func viewDidLoad() {
         super.viewDidLoad()
         balanceView.layer.cornerRadius = 10
@@ -37,10 +34,10 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         coinManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName:"PocketTableViewCell", bundle: nil), forCellReuseIdentifier: "pocketCell")
+        tableView.register(UINib(nibName: "PocketTableViewCell", bundle: nil), forCellReuseIdentifier: "pocketCell")
     }
     
-    //MARK: - TABLEVIEW
+    // MARK: - TABLEVIEW
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameCrypto.count
@@ -68,7 +65,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    //MARK: - CREATE PORTFOLIO
+    // MARK: - CREATE PORTFOLIO
     
     func createPortfiolio() {
         ref = Database.database().reference()
@@ -81,19 +78,27 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: - BUY FUNCTION
+    // MARK: - BUY FUNCTION
     
-    func buy(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void) {
+    func buy(deal: DealModel, _ completion: @escaping (Result<String, Error>) -> Void) {
         ref = Database.database().reference()
-        let keyDolars = ref.child(userId!).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
-            let item = snapshot.value as? [String:Double]
+        let keyDolars = ref.child(userId!)
+                            .queryOrdered(byChild: "USD")
+                            .queryStarting(atValue: 0)
+                            .observe(.childAdded) { (snapshot) in
+            let item = snapshot.value as? [String: Double]
             if ((item!["USD"]!) - deal.countDollars) < 0.0 {
                 completion(.failure(MyCustomError()))
             } else {
-                self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) - deal.countDollars])
-                let key = self.ref.child(self.userId!).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
-                    let item = snapshot.value as? [String:Double]
-                    self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["\(deal.nameCrypto)": (item!["\(deal.nameCrypto)"]!) + deal.countCrypto])
+                self.ref.child("\(self.userId!)/\(snapshot.key)")
+                                    .updateChildValues(["USD": (item!["USD"]!) - deal.countDollars])
+                let key = self.ref.child(self.userId!)
+                                    .queryOrdered(byChild: "\(deal.nameCrypto)")
+                                    .queryStarting(atValue: 0)
+                                    .observe(.childAdded) { (snapshot) in
+                    let item = snapshot.value as? [String: Double]
+                    self.ref.child("\(self.userId!)/\(snapshot.key)")
+                                    .updateChildValues(["\(deal.nameCrypto)": (item!["\(deal.nameCrypto)"]!) + deal.countCrypto])
                     let money = String(deal.countCrypto)
                     let dollars = String(format: "%.2f", deal.countDollars)
                     completion(.success("Successfully BOUGHT \(money) \(deal.nameCrypto) for \(dollars)$!"))
@@ -102,19 +107,27 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: - SELL FUNCTION
+    // MARK: - SELL FUNCTION
     
-    func sell(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void) {
+    func sell(deal: DealModel, _ completion: @escaping (Result<String, Error>) -> Void) {
         ref = Database.database().reference()
-        let key = ref.child(userId!).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
-            let item = snapshot.value as? [String:Double]
+        let key = ref.child(userId!)
+                        .queryOrdered(byChild: "\(deal.nameCrypto)")
+                        .queryStarting(atValue: 0)
+                        .observe(.childAdded) { (snapshot) in
+            let item = snapshot.value as? [String: Double]
             if ((item!["\(deal.nameCrypto)"]!) - deal.countCrypto) < 0.0 {
                 completion(.failure(MyCustomError()))
             } else {
-                self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["\(deal.nameCrypto)": (item!["\(deal.nameCrypto)"]!) - deal.countCrypto])
-                let keyDolars = self.ref.child(self.userId!).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
-                    let item = snapshot.value as? [String:Double]
-                    self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) + deal.countDollars])
+                self.ref.child("\(self.userId!)/\(snapshot.key)")
+                                            .updateChildValues(["\(deal.nameCrypto)": (item!["\(deal.nameCrypto)"]!) - deal.countCrypto])
+                let keyDolars = self.ref.child(self.userId!)
+                                            .queryOrdered(byChild: "USD")
+                                            .queryStarting(atValue: 0)
+                                            .observe(.childAdded) { (snapshot) in
+                    let item = snapshot.value as? [String: Double]
+                    self.ref.child("\(self.userId!)/\(snapshot.key)")
+                                            .updateChildValues(["USD": (item!["USD"]!) + deal.countDollars])
                     let money = String(deal.countCrypto)
                     let dollars = String(format: "%.2f", deal.countDollars)
                     completion(.success("Successfully SOLD \(money) \(deal.nameCrypto) for \(dollars)$!"))
@@ -123,22 +136,22 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: - SHOW PORTFOLIO
+    // MARK: - SHOW PORTFOLIO
     
     func showPortfolio() {
         ref = Database.database().reference()
         var x = 0
         handle = ref.child(userId!).observe(.childAdded, with: { (snapshot) in
             
-            if let item = snapshot.value as? [String:Double] {
+            if let item = snapshot.value as? [String: Double] {
                 for (key, value) in item {
                     self.nameCrypto.append(key)
                     self.countCrypto.append(value)
                     self.valuesArray.append(self.pricesArray[x].quote.USD.price * self.countCrypto[x])
-                    var sum = self.valuesArray.reduce(0,+)
-                    self.accountBalance.text = String(format: "%.2f",sum)
+                    var sum = self.valuesArray.reduce(0, +)
+                    self.accountBalance.text = String(format: "%.2f", sum)
                     self.accountBalance.text = String("\(self.accountBalance.text!)$")
-                    x = x + 1
+                    x += 1
                     
                     self.tableView.reloadData()
                 }
@@ -147,8 +160,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         )
     }
     
-    
-    //MARK: - BUY MORE MONEY (APPLE PAY)
+    // MARK: - BUY MORE MONEY (APPLE PAY)
     
     @IBAction func buyMoney(_ sender: UIButton) {
         if SKPaymentQueue.canMakePayments() {
@@ -159,13 +171,13 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions{
+        for transaction in transactions {
             if transaction.transactionState == .purchased {
                 print("Transaction Successful")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 ref = Database.database().reference()
                 let keyDolars = self.ref.child(self.userId!).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
-                    let item = snapshot.value as? [String:Double]
+                    let item = snapshot.value as? [String: Double]
                     self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) + 1000.0])
                 }
             } else if transaction.transactionState == .failed {
@@ -175,7 +187,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: - LOGOUT BUTTON PRESSED
+    // MARK: - LOGOUT BUTTON PRESSED
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -187,13 +199,13 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    //MARK: - Delegate Function
+    // MARK: - Delegate Function
     
     func didUpdateView(values: [Data2]) {
         var copyArray = values
-        let myArray = [0, 1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
+        let myArray = [0, 1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765, 512, 1376, 3794, 1982, 109, 1896]
         copyArray.insert(Data2(name: "USD", id: -0, symbol: "$", quote: CryptoTradeSimulator.Quote(USD: CryptoTradeSimulator.Usd(price: 1.0, percent_change_1h: 0.0, percent_change_24h: 0.0))), at: 0)
-        for y in 0..<myArray.count{
+        for y in 0..<myArray.count {
             for x in 0...60 {
                 if copyArray[x].id == myArray[y] {
                     pricesArray.append(copyArray[x])
@@ -202,7 +214,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    //MARK: - VIEW WILL APPEAR
+    // MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
         
         coinManager.getCoinPrice()
@@ -218,7 +230,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         showPortfolio()
     }
     
-    //MARK: - VIEW WILL DISAPPEAR
+    // MARK: - VIEW WILL DISAPPEAR
     override func viewWillDisappear(_ animated: Bool) {
         pricesArray.removeAll()
         valuesArray.removeAll()

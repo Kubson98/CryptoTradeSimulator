@@ -1,4 +1,3 @@
-
 import UIKit
 
 class CryptoDetailsViewController: UIViewController {
@@ -22,7 +21,7 @@ class CryptoDetailsViewController: UIViewController {
     
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
-        ChartModel(hours: -24, days: 0, months: 0,  years: 0, interval: "5m"),
+        ChartModel(hours: -24, days: 0, months: 0, years: 0, interval: "5m"),
         ChartModel(hours: 0, days: -7, months: 0, years: 0, interval: "30min"),
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
@@ -42,8 +41,7 @@ class CryptoDetailsViewController: UIViewController {
         if (change! as NSString).doubleValue > 0 {
             changeLabel.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
             changeLabel.text = ("+\(changeLabel.text!)")
-        } else if (change! as NSString).doubleValue < 0
-        {
+        } else if (change! as NSString).doubleValue < 0 {
             changeLabel.textColor = UIColor(red: 0.72, green: 0.00, blue: 0.00, alpha: 1.00)
         } else {
             changeLabel.textColor = UIColor.gray

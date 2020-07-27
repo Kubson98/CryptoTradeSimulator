@@ -1,8 +1,6 @@
-
-
 import UIKit
 
-class PriceTableViewCell: UITableViewCell{
+class PriceTableViewCell: UITableViewCell {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
@@ -26,7 +24,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         tableView.reloadData()
     }
     
-    //MARK: - TABLEVIEW
+    // MARK: - TABLEVIEW
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return priceArray.count
     }
@@ -56,7 +54,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         performSegue(withIdentifier: "goToCharts", sender: self)
         
     }
-    //MARK: - CHANGE COLORS CHANGE 24H PRICE
+    // MARK: - CHANGE COLORS CHANGE 24H PRICE
     func changesColors(value: Double, change: UILabel) {
         if value > 0 {
             change.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
@@ -68,7 +66,6 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         }
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! CryptoDetailsViewController
         
@@ -79,7 +76,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
             destinationVC.name = String(cell.name)
             destinationVC.change = String(format: "%.2f", cell.quote.USD.percent_change_24h)
             destinationVC.change = String("\(destinationVC.change!)%")
-            destinationVC.price = String(format: "%.2f",cell.quote.USD.price)
+            destinationVC.price = String(format: "%.2f", cell.quote.USD.price)
             destinationVC.price = String("\(destinationVC.price!)$")
             destinationVC.symbol = cell.symbol
         
@@ -89,19 +86,18 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
             }
         }
     }
-    //MARK: - REFRESH SWIPE
+    // MARK: - REFRESH SWIPE
     @IBAction func refresh(_ sender: UIRefreshControl) {
         sender.endRefreshing()
         coinManager.getCoinPrice()
         tableView.reloadData()
     }
     
-    //MARK: - VIEW WILL APPEAR
+    // MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
         coinManager.getCoinPrice()
-        repeat{
+        repeat {
             tableView.reloadData()
         } while priceArray.count == 0
     }
 }
-

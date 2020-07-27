@@ -1,5 +1,3 @@
-
-
 import Foundation
 
 struct CoinData: Codable {
@@ -22,5 +20,3 @@ struct Usd: Codable {
     let percent_change_1h: Double
     let percent_change_24h: Double
 }
-
-

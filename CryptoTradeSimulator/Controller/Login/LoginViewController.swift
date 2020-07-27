@@ -1,4 +1,3 @@
-
 import UIKit
 import Firebase
 
@@ -16,11 +15,11 @@ class LoginViewController: UIViewController {
         buyVC.buttonView(button: signUpButton)
     }
     
-    //MARK: - Login Button Pressed
+    // MARK: - Login Button Pressed
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        if let email = emailTextField.text, let password = passwordTextField.text{
+        if let email = emailTextField.text, let password = passwordTextField.text {
             
-            Auth.auth().signIn(withEmail: email, password: password) { (authresult, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
                 if let e = error {
                     print(e)
                 } else {
