@@ -4,10 +4,7 @@ import Foundation
 
 protocol CoinManagerDelegate {
     func didUpdateView(values: [Data2])
-    
 }
-
-
 
 struct CoinManager {
     
@@ -25,30 +22,27 @@ struct CoinManager {
     //MARK: - URL REQUEST
     
     func performRequest(urlString: String){
-          if let url = URL(string: urlString){
-              let session = URLSession(configuration: .default)
+        if let url = URL(string: urlString){
+            let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                  print(error!)
-                  return
+                    print(error!)
+                    return
                 }
                 
                 if let safeData = data {
-                   let test = self.parseJSON(coinData: safeData)
-                  self.delegate?.didUpdateView(values: test)
+                    let test = self.parseJSON(coinData: safeData)
+                    self.delegate?.didUpdateView(values: test)
                 }
             }
-                  
             task.resume()
-   
-      }
+        }
     }
-    
     
     //MARK: - JSON CONNECT
     
     func parseJSON(coinData: Data) -> [Data2]{
-               let decoder = JSONDecoder()
+        let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(CoinData.self, from: coinData)
             let result = decodedData.data
@@ -56,7 +50,6 @@ struct CoinManager {
         } catch {
             print(error)
             return error as! [Data2]
-                }
-    
-}
+        }
+    }
 }

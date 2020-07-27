@@ -17,7 +17,6 @@ class CryptoDetailsViewController: UIViewController {
     var price: String?
     var change: String?
     var symbol: String?
-    
     var chartVC = ChartViewController()
     var pick = Int()
     
@@ -26,14 +25,14 @@ class CryptoDetailsViewController: UIViewController {
         ChartModel(hours: -24, days: 0, months: 0,  years: 0, interval: "5m"),
         ChartModel(hours: 0, days: -7, months: 0, years: 0, interval: "30min"),
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
-        ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")
-    ]
+        ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
+    
     var cryptoDetails: [Data2] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         detailsView.layer.cornerRadius = 10
         detailsView.clipsToBounds = true
-
         logoCrypto.image = logo
         nameCrypto.text = name
         priceLabel.text = price
@@ -43,10 +42,10 @@ class CryptoDetailsViewController: UIViewController {
         if (change! as NSString).doubleValue > 0 {
             changeLabel.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
             changeLabel.text = ("+\(changeLabel.text!)")
-        }else if (change! as NSString).doubleValue < 0
+        } else if (change! as NSString).doubleValue < 0
         {
             changeLabel.textColor = UIColor(red: 0.72, green: 0.00, blue: 0.00, alpha: 1.00)
-        }else {
+        } else {
             changeLabel.textColor = UIColor.gray
         }
     }
@@ -65,7 +64,6 @@ class CryptoDetailsViewController: UIViewController {
             chartVC.showChart(time: chartVC.chartTime[4])
         default:
             chartVC.showChart(time: chartVC.chartTime[1])
-            
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,5 +72,4 @@ class CryptoDetailsViewController: UIViewController {
         destinationVC.selectedCurrency = selectedCurrency
         
     }
-   
 }

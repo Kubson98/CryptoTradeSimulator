@@ -1,6 +1,5 @@
 
 import UIKit
-import FBSDKLoginKit
 import Firebase
 
 class LoginViewController: UIViewController{
@@ -17,7 +16,7 @@ class LoginViewController: UIViewController{
         buyVC.buttonView(button: signUpButton)
     }
     
-    //MARK: - Login Button Pressed 
+    //MARK: - Login Button Pressed
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text{
             
@@ -29,14 +28,7 @@ class LoginViewController: UIViewController{
                         self.performSegue(withIdentifier: "goToApp", sender: self)
                     })
                 }
-                
             }
         }
     }
-    //MARK: - VIEW WILL APPEAR
-    override func viewWillAppear(_ animated: Bool) {
-        AccessToken.current = nil
-    }
-    
-    
 }

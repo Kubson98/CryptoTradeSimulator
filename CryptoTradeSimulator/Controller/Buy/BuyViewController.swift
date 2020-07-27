@@ -53,7 +53,6 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return 70
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         return myLogos[row].name
     }
     
@@ -65,7 +64,6 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         if let data = try? Data(contentsOf: url) {
             myImageView.image = UIImage(data: data)!
         }
-        
         myView.addSubview(myImageView)
         
         return myView
@@ -76,11 +74,8 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         price = myLogos[row].quote.USD.price
         if let count = Double(countCoins.text!) {
             resultPrice.text = String(format: "%.2f", count*price)
-            
         }
-        
     }
-    
     
     //MARK: - TEXFIELD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -102,7 +97,6 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             sellButtonView.isHidden = true
         }
     }
-    
     
     //MARK: - BUY BUTTON PRESSED
     @IBAction func buyButtonPressed(_ sender: UIButton) {
@@ -133,30 +127,29 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough cryptocurrencies to make this transaction")
             }
-            
         }
     }
     
     //MARK: - DELEGATE FUNCTION
     
     func didUpdateView(values: [Data2]) {
-          var copyArray = values
-          let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
-          for y in 0..<myArray.count{
-              for x in 0..<60 {
-                  if copyArray[x].id == myArray[y] {
-                      myLogos.append(copyArray[x])
-                  }
-              }
-          }    }
-      
+        let copyArray = values
+        let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
+        for y in 0..<myArray.count{
+            for x in 0..<60 {
+                if copyArray[x].id == myArray[y] {
+                    myLogos.append(copyArray[x])
+                }
+            }
+        }
+    }
+    
     //MARK: - VIEW WILL APPEAR
     
     override func viewWillAppear(_ animated: Bool) {
         vc.getCoinPrice()
         repeat{
             logoPickerView.reloadAllComponents()
-            
         } while myLogos.count == 0
         logoPickerView.selectRow(0, inComponent: 0, animated: false)
         pickerView(logoPickerView, didSelectRow: 0, inComponent: 0)
@@ -165,7 +158,4 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         buyButtonView.isHidden = true
         sellButtonView.isHidden = true
     }
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        myLogos.removeAll()
-    //    }
 }

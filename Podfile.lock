@@ -226,22 +226,6 @@ PODS:
   - CoinpaprikaAPI/Client (2.2):
     - CoinpaprikaAPI/Networking
   - CoinpaprikaAPI/Networking (2.2)
-  - FacebookCore (0.9.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FacebookLogin (0.9.0):
-    - FacebookCore (~> 0.9.0)
-    - FBSDKCoreKit (~> 5.0)
-    - FBSDKLoginKit (~> 5.0)
-  - FBSDKCoreKit (5.15.1):
-    - FBSDKCoreKit/Basics (= 5.15.1)
-    - FBSDKCoreKit/Core (= 5.15.1)
-  - FBSDKCoreKit/Basics (5.15.1)
-  - FBSDKCoreKit/Core (5.15.1):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.15.1):
-    - FBSDKLoginKit/Login (= 5.15.1)
-  - FBSDKLoginKit/Login (5.15.1):
-    - FBSDKCoreKit (~> 5.0)
   - Firebase/Auth (6.26.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.5.3)
@@ -347,8 +331,6 @@ PODS:
 DEPENDENCIES:
   - Charts
   - CoinpaprikaAPI
-  - FacebookCore
-  - FacebookLogin
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Firestore
@@ -362,10 +344,6 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Charts
     - CoinpaprikaAPI
-    - FacebookCore
-    - FacebookLogin
-    - FBSDKCoreKit
-    - FBSDKLoginKit
     - Firebase
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -392,10 +370,6 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   CoinpaprikaAPI: 30093dd2ece7d8ecea8c0d8671f704e7a6095f0b
-  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
-  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
-  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
-  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
   FirebaseAuth: 7047aec89c0b17ecd924a550c853f0c27ac6015e
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
@@ -417,6 +391,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: 6d289358c40a1a35ab3db177e9781162fa16f7f4
+PODFILE CHECKSUM: 4a20a4e61bbe80571f5ff7de224ff2f35b4a9a02
 
 COCOAPODS: 1.9.1

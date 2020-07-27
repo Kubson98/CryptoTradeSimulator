@@ -4,7 +4,6 @@ import Foundation
 
 struct CoinData: Codable {
     let data: [Data2]
-    
 }
 
 struct Data2: Codable {
@@ -16,7 +15,7 @@ struct Data2: Codable {
 
 struct Quote: Codable {
     let USD: Usd
-    }
+}
 
 struct Usd: Codable {
     let price: Double

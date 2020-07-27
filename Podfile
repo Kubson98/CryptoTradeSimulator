@@ -14,7 +14,5 @@ target 'CryptoTradeSimulator' do
 	pod 'Firebase/Firestore'
 	pod 'SCLAlertView'
 	pod 'IQKeyboardManagerSwift'
-
-	pod 'FacebookCore'
-	pod 'FacebookLogin'
+	
 end

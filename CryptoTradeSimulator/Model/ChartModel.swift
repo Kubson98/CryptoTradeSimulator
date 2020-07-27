@@ -7,5 +7,4 @@ struct ChartModel{
     var months: Int
     var years: Int
     var interval: String
-    
 }

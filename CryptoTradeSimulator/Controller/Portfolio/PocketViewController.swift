@@ -1,24 +1,20 @@
 
+
 import UIKit
 import Coinpaprika
 import FirebaseDatabase
 import Firebase
-import FBSDKLoginKit
 import StoreKit
 
 struct MyCustomError : Error {}
 
 
 class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoinManagerDelegate, SKPaymentTransactionObserver {
-    
-    
-    
     @IBOutlet weak var accountBalance: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var balanceView: UIView!
     
-
     let productID = "Kuba.CryptoTradeSimulator.ExtraMoney"
     var vcPrices = PricesViewController()
     var userId = Auth.auth().currentUser?.uid
@@ -38,12 +34,10 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         balanceView.layer.shadowOpacity = 0.5
         balanceView.layer.shadowOffset = CGSize(width: 0, height: 0)
         SKPaymentQueue.default().add(self)
-        
         coinManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName:"PocketTableViewCell", bundle: nil), forCellReuseIdentifier: "pocketCell")
-        
     }
     
     //MARK: - TABLEVIEW
@@ -60,7 +54,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             url = URL(string: "https://www.iconpacks.net/icons/2/free-icon-dollar-coin-2139.png")!
             cell.numberLabel.text = String(format: "%.2f", countCrypto[indexPath.row])
             cell.numberLabel.text = "\(cell.numberLabel.text!)\(listPrices.symbol)"
-        }else{
+        } else {
             cell.numberLabel.text = "\(countCrypto[indexPath.row])\(listPrices.symbol)"
         }
         if let data = try? Data(contentsOf: url) {
@@ -95,7 +89,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let item = snapshot.value as? [String:Double]
             if ((item!["USD"]!) - deal.countDollars) < 0.0 {
                 completion(.failure(MyCustomError()))
-            }else{
+            } else {
                 
                 self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) - deal.countDollars])
                 let key = self.ref.child(self.userId!).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
@@ -105,7 +99,6 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let dollars = String(format: "%.2f", deal.countDollars)
                     completion(.success("Successfully BOUGHT \(money) \(deal.nameCrypto) for \(dollars)$!"))
                 }
-                
             }
         }
     }
@@ -118,7 +111,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let item = snapshot.value as? [String:Double]
             if ((item!["\(deal.nameCrypto)"]!) - deal.countCrypto) < 0.0 {
                 completion(.failure(MyCustomError()))
-            }else{
+            } else {
                 self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["\(deal.nameCrypto)": (item!["\(deal.nameCrypto)"]!) - deal.countCrypto])
                 let keyDolars = self.ref.child(self.userId!).queryOrdered(byChild: "USD").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
                     let item = snapshot.value as? [String:Double]
@@ -149,9 +142,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     x = x + 1
                     
                     self.tableView.reloadData()
-                    
                 }
-                
             }
         }
         )
@@ -161,7 +152,6 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - BUY MORE MONEY (APPLE PAY)
     
     @IBAction func buyMoney(_ sender: UIButton) {
-        
         if SKPaymentQueue.canMakePayments(){
             let paymentRequest = SKMutablePayment()
             paymentRequest.productIdentifier = productID
@@ -179,10 +169,9 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let item = snapshot.value as? [String:Double]
                     self.ref.child("\(self.userId!)/\(snapshot.key)").updateChildValues(["USD": (item!["USD"]!) + 1000.0])
                 }
-            }else if transaction.transactionState == .failed {
+            } else if transaction.transactionState == .failed {
                 print("Transaction Failed")
                 SKPaymentQueue.default().finishTransaction(transaction)
-                
             }
         }
     }
@@ -218,7 +207,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         
         coinManager.getCoinPrice()
-        repeat{
+        repeat {
             tableView.reloadData()
         } while pricesArray.count == 0
         ref = Database.database().reference()

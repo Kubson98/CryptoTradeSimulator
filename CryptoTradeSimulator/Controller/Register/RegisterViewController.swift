@@ -23,7 +23,7 @@ class RegisterViewController: UIViewController {
                 Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                     if let e = error {
                         print(e)
-                    }else{
+                    } else {
                         let appearance = SCLAlertView.SCLAppearance(
                             showCloseButton: false
                         )
@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController {
                         }
                     }
                 }
-            }else{
+            } else {
                 SCLAlertView().showError("Unfortunately!", subTitle: "Passwords must be identical!")
             }
         }
