@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController {
         buyVC.buttonView(button: registerButton)
     }
     
+    //MARK: - Register Button Pressed
     @IBAction func registerPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text{
             if passwordTextField.text == repeatPasswordTextField.text{

@@ -18,18 +18,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var balanceView: UIView!
     
-    func didUpdateView(values: [Data2]) {
-        var copyArray = values
-        let myArray = [0, 1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
-        copyArray.insert(Data2(name: "USD", id: -0, symbol: "$", quote: CryptoTradeSimulator.Quote(USD: CryptoTradeSimulator.Usd(price: 1.0, percent_change_1h: 0.0, percent_change_24h: 0.0))), at: 0)
-        for y in 0..<myArray.count{
-            for x in 0...60 {
-                if copyArray[x].id == myArray[y] {
-                    pricesArray.append(copyArray[x])
-                }
-            }
-        }
-    }
+
     let productID = "Kuba.CryptoTradeSimulator.ExtraMoney"
     var vcPrices = PricesViewController()
     var userId = Auth.auth().currentUser?.uid
@@ -57,7 +46,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    var cryptoPocketArray: [String:Int] = [:]
+    //MARK: - TABLEVIEW
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameCrypto.count
@@ -85,6 +74,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    //MARK: - CREATE PORTFOLIO
+    
     func createPortfiolio(){
         ref = Database.database().reference()
         ref.child(userId!).childByAutoId().setValue([pricesArray[0].name: 10000.0])
@@ -95,6 +86,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ref.child(userId!).childByAutoId().setValue([nameOfCoin: 0.0])
         }
     }
+    
+    //MARK: - BUY FUNCTION
     
     func buy(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void){
         ref = Database.database().reference()
@@ -117,6 +110,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: - SELL FUNCTION
+    
     func sell(deal:DealModel, _ completion: @escaping (Result<String, Error>) -> Void){
         ref = Database.database().reference()
         let key = ref.child(userId!).queryOrdered(byChild: "\(deal.nameCrypto)").queryStarting(atValue: 0).observe(.childAdded) { (snapshot) in
@@ -136,6 +131,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: - SHOW PORTFOLIO
     
     func showPortfolio(){
         ref = Database.database().reference()
@@ -161,6 +157,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         )
     }
     
+    
+    //MARK: - BUY MORE MONEY (APPLE PAY)
     
     @IBAction func buyMoney(_ sender: UIButton) {
         
@@ -189,7 +187,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
+    //MARK: - LOGOUT BUTTON PRESSED
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -201,7 +199,22 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    //MARK: - Delegate Function
     
+    func didUpdateView(values: [Data2]) {
+        var copyArray = values
+        let myArray = [0, 1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
+        copyArray.insert(Data2(name: "USD", id: -0, symbol: "$", quote: CryptoTradeSimulator.Quote(USD: CryptoTradeSimulator.Usd(price: 1.0, percent_change_1h: 0.0, percent_change_24h: 0.0))), at: 0)
+        for y in 0..<myArray.count{
+            for x in 0...60 {
+                if copyArray[x].id == myArray[y] {
+                    pricesArray.append(copyArray[x])
+                }
+            }
+        }
+    }
+    
+    //MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
         
         coinManager.getCoinPrice()
@@ -217,6 +230,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         showPortfolio()
     }
     
+    //MARK: - VIEW WILL DISAPPEAR
     override func viewWillDisappear(_ animated: Bool) {
         pricesArray.removeAll()
         values.removeAll()

@@ -10,18 +10,6 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var buyButtonView: UIView!
     @IBOutlet weak var sellButtonView: UIView!
-    
-    func didUpdateView(values: [Data2]) {
-        var copyArray = values
-        let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
-        for y in 0..<myArray.count{
-            for x in 0..<60 {
-                if copyArray[x].id == myArray[y] {
-                    myLogos.append(copyArray[x])
-                }
-            }
-        }    }
-    
     @IBOutlet weak var logoPickerView: UIPickerView!
     var price = Double()
     var myLogos = [Data2]()
@@ -38,6 +26,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         buttonView(button: buyButtonView)
         buttonView(button: sellButtonView)
     }
+    //MARK: - BUTTONVIEW CONFIGURE
     
     func buttonView(button: UIView){
         button.layer.cornerRadius = 20
@@ -46,6 +35,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
+    //MARK: - PICKERVIEW
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -92,7 +82,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     
-    
+    //MARK: - TEXFIELD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         countCoins.endEditing(true)
         resultPrice.endEditing(true)
@@ -114,6 +104,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     
+    //MARK: - BUY BUTTON PRESSED
     @IBAction func buyButtonPressed(_ sender: UIButton) {
         let count = Double(countCoins.text!)
         let dolars = Double(resultPrice.text!)
@@ -129,6 +120,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    //MARK: - SELL BUTTON PRESSED
     @IBAction func sellButtonPressed(_ sender: UIButton) {
         let count = Double(countCoins.text!)
         let dolars = Double(resultPrice.text!)
@@ -144,6 +136,22 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             
         }
     }
+    
+    //MARK: - DELEGATE FUNCTION
+    
+    func didUpdateView(values: [Data2]) {
+          var copyArray = values
+          let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765,  512, 1376, 3794, 1982, 109, 1896]
+          for y in 0..<myArray.count{
+              for x in 0..<60 {
+                  if copyArray[x].id == myArray[y] {
+                      myLogos.append(copyArray[x])
+                  }
+              }
+          }    }
+      
+    //MARK: - VIEW WILL APPEAR
+    
     override func viewWillAppear(_ animated: Bool) {
         vc.getCoinPrice()
         repeat{

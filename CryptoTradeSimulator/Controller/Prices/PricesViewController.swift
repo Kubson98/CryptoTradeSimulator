@@ -21,11 +21,6 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
 
     var coinManager = CoinManager()
     
-    @IBAction func refresh(_ sender: UIRefreshControl) {
-        sender.endRefreshing()
-        coinManager.getCoinPrice()
-        tableView.reloadData()
-    }
     
     
     override func viewDidLoad() {
@@ -35,6 +30,8 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
     }
 
     var priceArray: [Data2] = []
+    
+    //MARK: - TABLEVIEW
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return priceArray.count
     }
@@ -69,7 +66,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         performSegue(withIdentifier: "goToCharts", sender: self)
         
     }
-    
+    //MARK: - CHANGE COLORS CHANGE 24H PRICE
     func changesColors(value: Double, change: UILabel){
         if value > 0 {
          change.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
@@ -81,6 +78,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
          change.textColor = UIColor.gray
          }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      let destinationVC = segue.destination as! CryptoDetailsViewController
@@ -107,7 +105,13 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         }
         
     }
-
+    //MARK: - REFRESH SWIPE
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        sender.endRefreshing()
+        coinManager.getCoinPrice()
+        tableView.reloadData()
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
 
