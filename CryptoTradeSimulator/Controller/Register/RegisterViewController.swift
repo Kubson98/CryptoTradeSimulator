@@ -10,7 +10,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var registerButton: UIView!
     
     let buyVC = BuyViewController()
-    let pocketVC = PocketViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buyVC.buttonView(button: registerButton)
