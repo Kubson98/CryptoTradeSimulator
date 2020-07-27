@@ -88,7 +88,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                                        y: priceDouble)]
                     self.yValues.append(contentsOf: tab)
                     self.yValues.sort(by: { $0.x < $1.x })
-                    var myTime = Date(timeIntervalSince1970: timeDouble)
                 }
                 self.setData()
                 
