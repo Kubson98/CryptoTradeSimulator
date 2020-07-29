@@ -4,7 +4,7 @@ import Charts
 import TinyConstraints
 
 class ChartViewController: UIViewController, ChartViewDelegate {
-    
+
     var selectedCurrency: String = ""
     var changeTime = -365
     var highlight: Highlight?
@@ -13,7 +13,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         chartView.backgroundColor = .systemBackground
         return chartView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(lineChartView)
@@ -30,9 +30,9 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         lineChartView.doubleTapToZoomEnabled = false
         setData()
     }
-    
+
     var yValues: [ChartDataEntry] = []
-    
+
     func setData() {
         let set1 = LineChartDataSet(entries: yValues, label: nil)
         set1.mode = .cubicBezier
@@ -43,9 +43,9 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         let data = LineChartData(dataSet: set1)
         lineChartView.data = data
         data.setDrawValues(false)
-        
+
     }
-    
+
     func getID(nameCMC: String, _ completion: @escaping (Result<String, Error>) -> Void) {
         Coinpaprika.API.coins().perform { (response) in
             switch response {
@@ -60,9 +60,9 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             }
         }
     }
-    
+
     func test(id: String, time: ChartModel) {
-        
+
         var dateComponent = DateComponents()
         dateComponent.month = time.months
         dateComponent.day = time.days
@@ -70,8 +70,17 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         dateComponent.hour = time.hours
         let currentDate = Date()
         let futureDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
-        
-        Coinpaprika.API.tickerHistory(id: id, start: futureDate!, end: Date(), limit: 1000, quote: QuoteCurrency.usd, interval: API.TickerHistoryInterval(rawValue: time.interval)!).perform { (response) in
+
+        Coinpaprika
+            .API
+            .tickerHistory(id: id,
+                           start: futureDate!,
+                           end: Date(),
+                           limit: 1000,
+                           quote: QuoteCurrency.usd,
+                           interval: API
+                                    .TickerHistoryInterval(rawValue: time.interval)!)
+                                    .perform { (response) in
             switch response {
             case .success(let tickerhistory):
                 for n in 0..<tickerhistory.count {
@@ -86,12 +95,12 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                     self.yValues.sort(by: { $0.x < $1.x })
                 }
                 self.setData()
-                
+
             case .failure:
                 print(Error.self)
             }
         }
-        
+
     }
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
@@ -99,20 +108,20 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         ChartModel(hours: 0, days: -7, months: 0, years: 0, interval: "30m"),
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
-    
+
     func showChart(time: ChartModel) {
         getID(nameCMC: selectedCurrency) { result in
             switch result {
             case .success(let id):
                 self.yValues.removeAll()
                 self.test(id: id, time: time)
-                
+
             case .failure(let error):
                 print("Error is:", error)
             }
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         showChart(time: chartTime[1])
     }

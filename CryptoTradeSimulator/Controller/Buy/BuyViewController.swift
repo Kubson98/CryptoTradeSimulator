@@ -14,7 +14,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var myLogos = [Data2]()
     var vc = CoinManager()
     var pocketVC = PocketViewController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         vc.delegate = self
@@ -26,7 +26,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         buttonView(button: sellButtonView)
     }
     // MARK: - BUTTONVIEW CONFIGURE
-    
+
     func buttonView(button: UIView) {
         button.layer.cornerRadius = 20
         button.layer.shadowColor = UIColor.systemGray2.cgColor
@@ -35,39 +35,39 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         button.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     // MARK: - PICKERVIEW
-    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 17
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 70
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 70
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return myLogos[row].name
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let myView = UIView(frame: CGRect(x: 0, y: 0, width: 65, height: 65))
         let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 65, height: 65))
         let url = URL(string: "https://s2.coinmarketcap.com/static/img/coins/64x64/\(myLogos[row].id).png")!
-        
+
         if let data = try? Data(contentsOf: url) {
             myImageView.image = UIImage(data: data)!
         }
         myView.addSubview(myImageView)
-        
+
         return myView
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         nameCryptoCurr.text = myLogos[row].name
         price = myLogos[row].quote.USD.price
@@ -75,28 +75,28 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             resultPrice.text = String(format: "%.2f", count*price)
         }
     }
-    
+
     // MARK: - TEXFIELD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         countCoins.endEditing(true)
         resultPrice.endEditing(true)
         return true
     }
-    
+
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let count = Double(countCoins.text!) {
             resultPrice.text = String(format: "%.2f", count*price)
             buyButtonView.isHidden = false
             sellButtonView.isHidden = false
         }
-        
+
         if countCoins.text == "" {
             resultPrice.text = ""
             buyButtonView.isHidden = true
             sellButtonView.isHidden = true
         }
     }
-    
+
     // MARK: - BUY BUTTON PRESSED
     @IBAction func buyButtonPressed(_ sender: UIButton) {
         let count = Double(countCoins.text!)
@@ -105,13 +105,13 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             switch result {
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
-                
+
             case .failure(let error):
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough dollars to make this transaction")
             }
         }
     }
-    
+
     // MARK: - SELL BUTTON PRESSED
     @IBAction func sellButtonPressed(_ sender: UIButton) {
         let count = Double(countCoins.text!)
@@ -120,16 +120,16 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             switch result {
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
-                
+
             case .failure(let error):
-                
+
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough cryptocurrencies to make this transaction")
             }
         }
     }
-    
+
     // MARK: - DELEGATE FUNCTION
-    
+
     func didUpdateView(values: [Data2]) {
         let copyArray = values
         let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765, 512, 1376, 3794, 1982, 109, 1896]
@@ -141,9 +141,9 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             }
         }
     }
-    
+
     // MARK: - VIEW WILL APPEAR
-    
+
     override func viewWillAppear(_ animated: Bool) {
         vc.getCoinPrice()
         repeat {

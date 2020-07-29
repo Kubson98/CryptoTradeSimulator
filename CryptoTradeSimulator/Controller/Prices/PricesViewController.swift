@@ -9,36 +9,36 @@ class PriceTableViewCell: UITableViewCell {
 }
 
 class PricesViewController: UITableViewController, CoinManagerDelegate {
-    
+
     func didUpdateView(values: [Data2]) {
         priceArray = values
     }
-    
+
     let detailsVC = CryptoDetailsViewController()
     var coinManager = CoinManager()
     var priceArray: [Data2] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         coinManager.delegate = self
         tableView.reloadData()
     }
-    
+
     // MARK: - TABLEVIEW
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return priceArray.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath) as! PriceTableViewCell
         let listPrices = priceArray[indexPath.row]
-        
+
         let url = URL(string: "https://s2.coinmarketcap.com/static/img/coins/64x64/\(listPrices.id).png")!
-        
+
         if let data = try? Data(contentsOf: url) {
             cell.logo.image = UIImage(data: data)
         }
-        
+
         cell.name.text = String(listPrices.name)
         cell.symbol.text = String(listPrices.symbol)
         cell.price.text = String(format: "%.2f", listPrices.quote.USD.price)
@@ -46,13 +46,13 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         cell.change24.text = String(format: "%.2f", listPrices.quote.USD.percent_change_24h)
         cell.change24.text = ("\(cell.change24.text!)%")
         changesColors(value: listPrices.quote.USD.percent_change_24h, change: cell.change24)
-        
+
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToCharts", sender: self)
-        
+
     }
     // MARK: - CHANGE COLORS CHANGE 24H PRICE
     func changesColors(value: Double, change: UILabel) {
@@ -65,13 +65,13 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
             change.textColor = UIColor.gray
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! CryptoDetailsViewController
-        
+
         if let indexPath = tableView.indexPathForSelectedRow {
             let cell = priceArray[indexPath.row]
-            
+
             destinationVC.selectedCurrency = cell.name
             destinationVC.name = String(cell.name)
             destinationVC.change = String(format: "%.2f", cell.quote.USD.percent_change_24h)
@@ -79,7 +79,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
             destinationVC.price = String(format: "%.2f", cell.quote.USD.price)
             destinationVC.price = String("\(destinationVC.price!)$")
             destinationVC.symbol = cell.symbol
-        
+
             let url = URL(string: "https://s2.coinmarketcap.com/static/img/coins/64x64/\(cell.id).png")!
             if let data = try? Data(contentsOf: url) {
                 destinationVC.logo = UIImage(data: data)
@@ -92,7 +92,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         coinManager.getCoinPrice()
         tableView.reloadData()
     }
-    
+
     // MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
         coinManager.getCoinPrice()

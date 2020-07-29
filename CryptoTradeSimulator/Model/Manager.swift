@@ -7,17 +7,16 @@ protocol CoinManagerDelegate {
 struct CoinManager {
     var delegate: CoinManagerDelegate?
     let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=60"
-    let apiKey = "5c3cd1f0-54f3-430f-8397-d425000b8843"
-    
+
     // MARK: - URL ADRESS
-    
+
     func getCoinPrice() {
-        let urlString = "\(baseURL)&CMC_PRO_API_KEY=\(apiKey)&convert=USD"
+        let urlString = "\(baseURL)&CMC_PRO_API_KEY=\(myApiKey)&convert=USD"
         self.performRequest(urlString: urlString)
     }
-    
+
     // MARK: - URL REQUEST
-    
+
     func performRequest(urlString: String) {
         if let url = URL(string: urlString) {
             let session = URLSession.shared
@@ -26,7 +25,7 @@ struct CoinManager {
                     print(error!)
                     return
                 }
-                
+
                 if let safeData = data {
                     let test = self.parseJSON(coinData: safeData)
                     self.delegate?.didUpdateView(values: test)
@@ -35,9 +34,9 @@ struct CoinManager {
             task.resume()
         }
     }
-    
+
     // MARK: - JSON CONNECT
-    
+
     func parseJSON(coinData: Data) -> [Data2] {
         let decoder = JSONDecoder()
         do {

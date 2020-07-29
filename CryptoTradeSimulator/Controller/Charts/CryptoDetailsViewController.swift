@@ -1,14 +1,14 @@
 import UIKit
 
 class CryptoDetailsViewController: UIViewController {
-    
+
     @IBOutlet weak var logoCrypto: UIImageView!
     @IBOutlet weak var nameCrypto: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var detailsView: UIView!
-    
+
     var selectedCurrency: String = ""
     var selectedTime: Int = 1
     var logo: UIImage?
@@ -18,16 +18,16 @@ class CryptoDetailsViewController: UIViewController {
     var symbol: String?
     var chartVC = ChartViewController()
     var pick = Int()
-    
+
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
         ChartModel(hours: -24, days: 0, months: 0, years: 0, interval: "5m"),
         ChartModel(hours: 0, days: -7, months: 0, years: 0, interval: "30min"),
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
-    
+
     var cryptoDetails: [Data2] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         detailsView.layer.cornerRadius = 10
@@ -37,7 +37,7 @@ class CryptoDetailsViewController: UIViewController {
         priceLabel.text = price
         changeLabel.text = change
         symbolLabel.text = symbol
-        
+
         if (change! as NSString).doubleValue > 0 {
             changeLabel.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
             changeLabel.text = ("+\(changeLabel.text!)")
@@ -47,7 +47,7 @@ class CryptoDetailsViewController: UIViewController {
             changeLabel.textColor = UIColor.gray
         }
     }
-    
+
     @IBAction func pickChange(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -68,6 +68,6 @@ class CryptoDetailsViewController: UIViewController {
         let destinationVC = segue.destination as! ChartViewController
         chartVC = destinationVC
         destinationVC.selectedCurrency = selectedCurrency
-        
+
     }
 }

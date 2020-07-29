@@ -7,14 +7,14 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var registerButton: UIView!
-    
+
     let buyVC = BuyViewController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         buyVC.buttonView(button: registerButton)
     }
-    
+
     // MARK: - Register Button Pressed
     @IBAction func registerPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
@@ -27,7 +27,8 @@ class RegisterViewController: UIViewController {
                             showCloseButton: false
                         )
                         let alertView = SCLAlertView(appearance: appearance)
-                        let alert = alertView.showSuccess("Congratulations!", subTitle: "You joined to Crypto Trade Simulator")
+                        let alert = alertView
+                                        .showSuccess("Congratulations!", subTitle: "You joined to Crypto Trade Simulator")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                             self.performSegue(withIdentifier: "reggoToApp", sender: self)
                         })
