@@ -6,7 +6,7 @@ import StoreKit
 
 struct MyCustomError: Error {}
 
-class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoinManagerDelegate, SKPaymentTransactionObserver {
+class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CoinManagerDelegate {
     @IBOutlet weak var accountBalance: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountLabel: UILabel!
@@ -160,37 +160,6 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         )
     }
 
-    // MARK: - BUY MORE MONEY (APPLE PAY)
-
-    @IBAction func buyMoney(_ sender: UIButton) {
-        if SKPaymentQueue.canMakePayments() {
-            let paymentRequest = SKMutablePayment()
-            paymentRequest.productIdentifier = productID
-            SKPaymentQueue.default().add(paymentRequest)
-        }
-    }
-
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            if transaction.transactionState == .purchased {
-                print("Transaction Successful")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                ref = Database.database().reference()
-                let keyDolars = self.ref.child(self.userId!)
-                                                    .queryOrdered(byChild: "USD")
-                                                    .queryStarting(atValue: 0)
-                                                    .observe(.childAdded) { (snapshot) in
-                    let item = snapshot.value as? [String: Double]
-                    self.ref.child("\(self.userId!)/\(snapshot.key)")
-                                                        .updateChildValues(["USD": (item!["USD"]!) + 1000.0])
-                }
-            } else if transaction.transactionState == .failed {
-                print("Transaction Failed")
-                SKPaymentQueue.default().finishTransaction(transaction)
-            }
-        }
-    }
-
     // MARK: - LOGOUT BUTTON PRESSED
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         do {
@@ -252,4 +221,39 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         nameCrypto.removeAll()
         countCrypto.removeAll()
     }
+}
+
+// MARK: - BUY MORE MONEY (APPLE PAY)
+
+extension PocketViewController: SKPaymentTransactionObserver {
+
+    @IBAction func buyMoney(_ sender: UIButton) {
+        if SKPaymentQueue.canMakePayments() {
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = productID
+            SKPaymentQueue.default().add(paymentRequest)
+        }
+    }
+
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            if transaction.transactionState == .purchased {
+                print("Transaction Successful")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                ref = Database.database().reference()
+                let keyDolars = self.ref.child(self.userId!)
+                                                    .queryOrdered(byChild: "USD")
+                                                    .queryStarting(atValue: 0)
+                                                    .observe(.childAdded) { (snapshot) in
+                    let item = snapshot.value as? [String: Double]
+                    self.ref.child("\(self.userId!)/\(snapshot.key)")
+                                                        .updateChildValues(["USD": (item!["USD"]!) + 1000.0])
+                }
+            } else if transaction.transactionState == .failed {
+                print("Transaction Failed")
+                SKPaymentQueue.default().finishTransaction(transaction)
+            }
+        }
+    }
+
 }
