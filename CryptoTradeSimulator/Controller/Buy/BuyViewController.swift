@@ -14,6 +14,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var myLogos = [Data2]()
     var vc = CoinManager()
     var pocketVC = PocketViewController()
+    var viewModel = PocketViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         buttonView(button: sellButtonView)
     }
     // MARK: - BUTTONVIEW CONFIGURE
-
+    
     func buttonView(button: UIView) {
         button.layer.cornerRadius = 20
         button.layer.shadowColor = UIColor.systemGray2.cgColor
@@ -35,7 +36,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         button.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     // MARK: - PICKERVIEW
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -77,6 +78,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
 
     // MARK: - TEXFIELD
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         countCoins.endEditing(true)
         resultPrice.endEditing(true)
@@ -98,10 +100,11 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
 
     // MARK: - BUY BUTTON PRESSED
+    
     @IBAction func buyButtonPressed(_ sender: UIButton) {
         let count = Double(countCoins.text!)
         let dolars = Double(resultPrice.text!)
-        pocketVC.buy(deal: DealModel(nameCrypto: nameCryptoCurr.text!, countCrypto: count!, countDollars: dolars!)) { result in
+        viewModel.buyCoin(deal: DealModel(nameCrypto: nameCryptoCurr.text!, countCrypto: count!, countDollars: dolars!)) { result in
             switch result {
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
@@ -113,37 +116,29 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
 
     // MARK: - SELL BUTTON PRESSED
+    
     @IBAction func sellButtonPressed(_ sender: UIButton) {
         let count = Double(countCoins.text!)
         let dolars = Double(resultPrice.text!)
-        pocketVC.sell(deal: DealModel(nameCrypto: nameCryptoCurr.text!, countCrypto: count!, countDollars: dolars!)) { result in
+        viewModel.sellCoin(deal: DealModel(nameCrypto: nameCryptoCurr.text!, countCrypto: count!, countDollars: dolars!)) { result in
             switch result {
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
 
             case .failure(let error):
-
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough cryptocurrencies to make this transaction")
             }
         }
     }
 
     // MARK: - DELEGATE FUNCTION
-
+    
     func didUpdateView(values: [Data2]) {
-        let copyArray = values
-        let myArray = [1, 1027, 825, 52, 1831, 3602, 2010, 2, 1839, 1975, 1765, 512, 1376, 3794, 1982, 109, 1896]
-        for y in 0..<myArray.count {
-            for x in 0..<60 {
-                if copyArray[x].id == myArray[y] {
-                    myLogos.append(copyArray[x])
-                }
-            }
-        }
+        viewModel.mutualCoins(values: values, destinationArray: &myLogos)
     }
 
     // MARK: - VIEW WILL APPEAR
-
+    
     override func viewWillAppear(_ animated: Bool) {
         vc.getCoinPrice()
         repeat {

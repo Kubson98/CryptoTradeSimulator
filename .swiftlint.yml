@@ -3,7 +3,7 @@ disabled_rules: # rule identifiers to exclude from running
 - force_unwrappingitespace
 - identifier_name
 - force_try
-
+- trailing_whitespace
 
 force_unwrapping: warning
 

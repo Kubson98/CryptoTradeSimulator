@@ -9,14 +9,12 @@ struct CoinManager {
     let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=60"
 
     // MARK: - URL ADRESS
-
     func getCoinPrice() {
         let urlString = "\(baseURL)&CMC_PRO_API_KEY=\(myApiKey)&convert=USD"
         self.performRequest(urlString: urlString)
     }
 
     // MARK: - URL REQUEST
-
     func performRequest(urlString: String) {
         if let url = URL(string: urlString) {
             let session = URLSession.shared
@@ -36,7 +34,6 @@ struct CoinManager {
     }
 
     // MARK: - JSON CONNECT
-
     func parseJSON(coinData: Data) -> [Data2] {
         let decoder = JSONDecoder()
         do {
