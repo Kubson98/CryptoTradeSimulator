@@ -75,7 +75,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // MARK: - Delegate Function
 
-    func didUpdateView(values: [Data2]) {
+    func didUpdateView(values: [CryptoCurrencyData]) {
         viewModel.mutualCoins(values: values, destinationArray: &viewModel.pricesArray)
         viewModel.addDollar(destinationArray: &viewModel.pricesArray)
     }

@@ -10,13 +10,13 @@ class PriceTableViewCell: UITableViewCell {
 
 class PricesViewController: UITableViewController, CoinManagerDelegate {
 
-    func didUpdateView(values: [Data2]) {
+    func didUpdateView(values: [CryptoCurrencyData]) {
         priceArray = values
     }
 
     let detailsVC = CryptoDetailsViewController()
     var coinManager = CoinManager()
-    var priceArray: [Data2] = []
+    var priceArray: [CryptoCurrencyData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

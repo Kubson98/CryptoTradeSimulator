@@ -1,7 +1,7 @@
 import Foundation
 
 protocol CoinManagerDelegate {
-    func didUpdateView(values: [Data2])
+    func didUpdateView(values: [CryptoCurrencyData])
 }
 
 struct CoinManager {
@@ -34,7 +34,7 @@ struct CoinManager {
     }
 
     // MARK: - JSON CONNECT
-    func parseJSON(coinData: Data) -> [Data2] {
+    func parseJSON(coinData: Data) -> [CryptoCurrencyData] {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(CoinData.self, from: coinData)
@@ -42,7 +42,7 @@ struct CoinManager {
             return result
         } catch {
             print(error)
-            return error as! [Data2]
+            return error as! [CryptoCurrencyData]
         }
     }
 }

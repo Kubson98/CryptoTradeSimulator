@@ -11,7 +11,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var sellButtonView: UIView!
     @IBOutlet weak var logoPickerView: UIPickerView!
     var price = Double()
-    var myLogos = [Data2]()
+    var myLogos = [CryptoCurrencyData]()
     var vc = CoinManager()
     var pocketVC = PocketViewController()
     var viewModel = PocketViewModel()
@@ -133,7 +133,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     // MARK: - DELEGATE FUNCTION
     
-    func didUpdateView(values: [Data2]) {
+    func didUpdateView(values: [CryptoCurrencyData]) {
         viewModel.mutualCoins(values: values, destinationArray: &myLogos)
     }
 

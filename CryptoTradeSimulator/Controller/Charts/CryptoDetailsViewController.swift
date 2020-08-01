@@ -26,7 +26,7 @@ class CryptoDetailsViewController: UIViewController {
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
 
-    var cryptoDetails: [Data2] = []
+    var cryptoDetails: [CryptoCurrencyData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

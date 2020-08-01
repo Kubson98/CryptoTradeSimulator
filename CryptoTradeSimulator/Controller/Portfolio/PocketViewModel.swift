@@ -17,7 +17,7 @@ class PocketViewModel {
     var coinManager = CoinManager()
     var databaseRef = DatabaseReference()
     var databaseHandle: DatabaseHandle?
-    var pricesArray: [Data2] = []
+    var pricesArray: [CryptoCurrencyData] = []
     var userId = Auth.auth().currentUser?.uid
     var nameCrypto: [String] = []
     var countCrypto: [Double] = []
@@ -94,7 +94,7 @@ class PocketViewModel {
         }
     }
 
-    // MARK: - Logout Function
+    // MARK: - LOGOUT FUNCTION
     
     func logoutUser() {
         do {
@@ -107,7 +107,7 @@ class PocketViewModel {
 
     // MARK: - Delegate Function
     
-    func mutualCoins(values: [Data2], destinationArray: inout [Data2]) {
+    func mutualCoins(values: [CryptoCurrencyData], destinationArray: inout [CryptoCurrencyData]) {
         for numberOfportfolioCurr in 0..<portfolioCurr.count {
             for numberOfCoinsRank in 0..<values.count {
                 if values[numberOfCoinsRank].id == portfolioCurr[numberOfportfolioCurr] {
@@ -119,8 +119,8 @@ class PocketViewModel {
 
     // MARK: - ADD DOLLARS TO PORTFOLIO
     
-    func addDollar(destinationArray: inout [Data2]) {
-        destinationArray.insert(Data2(name: "USD",
+    func addDollar(destinationArray: inout [CryptoCurrencyData]) {
+        destinationArray.insert(CryptoCurrencyData(name: "USD",
                                       id: -0,
                                       symbol: "$",
                                       quote: CryptoTradeSimulator

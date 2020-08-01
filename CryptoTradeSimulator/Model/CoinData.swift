@@ -1,10 +1,10 @@
 import Foundation
 
 struct CoinData: Codable {
-    let data: [Data2]
+    let data: [CryptoCurrencyData]
 }
 
-struct Data2: Codable {
+struct CryptoCurrencyData: Codable {
     let name: String
     let id: Int
     let symbol: String
