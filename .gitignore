@@ -36,16 +36,7 @@ timeline.xctimeline
 playground.xcworkspace
 CryptoTradeSimulator/ApiKey.swift
 .swiftlint.yml
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> e1a4c5567319f326016f8c9074ac3cc7e5eab944
-=======
->>>>>>> e1a4c5567319f326016f8c9074ac3cc7e5eab944
-=======
->>>>>>> e1a4c5567319f326016f8c9074ac3cc7e5eab944
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
