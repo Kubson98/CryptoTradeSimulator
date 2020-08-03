@@ -19,7 +19,7 @@ class RegisterViewController: UIViewController {
     @IBAction func registerPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             if passwordTextField.text == repeatPasswordTextField.text {
-                Auth.auth().createUser(withEmail: email, password: password) { _, error in
+                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                     if let e = error {
                         print(e)
                     } else {
@@ -29,10 +29,10 @@ class RegisterViewController: UIViewController {
                         let alertView = SCLAlertView(appearance: appearance)
                         let alert = alertView
                                         .showSuccess("Congratulations!", subTitle: "You joined to Crypto Trade Simulator")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                            self.performSegue(withIdentifier: "reggoToApp", sender: self)
-                        })
-                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (_) in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                            self?.performSegue(withIdentifier: "reggoToApp", sender: self)
+                        }
+                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (timer) in
                             alert.close()
                         }
                     }
