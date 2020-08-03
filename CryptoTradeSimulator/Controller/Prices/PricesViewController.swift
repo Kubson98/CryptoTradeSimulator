@@ -95,6 +95,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
 
     // MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         coinManager.getCoinPrice()
         repeat {
             tableView.reloadData()

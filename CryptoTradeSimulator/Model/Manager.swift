@@ -1,11 +1,11 @@
 import Foundation
 
-protocol CoinManagerDelegate {
+protocol CoinManagerDelegate: AnyObject {
     func didUpdateView(values: [CryptoCurrencyData])
 }
 
-struct CoinManager {
-    var delegate: CoinManagerDelegate?
+class CoinManager {
+    weak var delegate: CoinManagerDelegate?
     let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=60"
 
     // MARK: - URL ADRESS

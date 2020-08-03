@@ -123,6 +123,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         showChart(time: chartTime[1])
     }
 }

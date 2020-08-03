@@ -83,6 +83,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - VIEW WILL APPEAR
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         coinManager.getCoinPrice()
         repeat {
             tableView.reloadData()
@@ -102,6 +103,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - VIEW WILL DISAPPEAR
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         viewModel.pricesArray.removeAll()
         viewModel.valuesArray.removeAll()
         viewModel.nameCrypto.removeAll()

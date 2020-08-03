@@ -109,7 +109,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
 
-            case .failure(let error):
+            case .failure:
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough dollars to make this transaction")
             }
         }
@@ -125,7 +125,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             case .success(let id):
                 SCLAlertView().showSuccess("Successfully!", subTitle: id)
 
-            case .failure(let error):
+            case .failure:
                 SCLAlertView().showError("Unfortunately!", subTitle: "You don't have enough cryptocurrencies to make this transaction")
             }
         }
@@ -140,6 +140,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: - VIEW WILL APPEAR
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         vc.getCoinPrice()
         repeat {
             logoPickerView.reloadAllComponents()
