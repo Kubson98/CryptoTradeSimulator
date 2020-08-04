@@ -2,6 +2,7 @@ import UIKit
 import Coinpaprika
 import Charts
 import TinyConstraints
+import SCLAlertView
 
 class ChartViewController: UIViewController, ChartViewDelegate {
 
@@ -57,7 +58,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                     }
                 }
             case .failure(let error):
-                print(error)
+                SCLAlertView().showError("Error!", subTitle: "Something wrong with the API")
             }
         }
     }

@@ -1,4 +1,5 @@
 import Foundation
+import SCLAlertView
 
 protocol CoinManagerDelegate: AnyObject {
     func didUpdateView(values: [CryptoCurrencyData])
@@ -20,7 +21,7 @@ class CoinManager {
             let session = URLSession.shared
             let task = session.dataTask(with: url) { [weak self] (data, response, error) in
                 if error != nil {
-                    print(error!)
+                    SCLAlertView().showError("Error!", subTitle: "Something wrong with task.")
                     return
                 }
                 
@@ -41,7 +42,7 @@ class CoinManager {
             let result = decodedData.data
             return result
         } catch {
-            print(error)
+            SCLAlertView().showError("Error!", subTitle: "Something wrong with conect.")
             return error as! [CryptoCurrencyData]
         }
     }

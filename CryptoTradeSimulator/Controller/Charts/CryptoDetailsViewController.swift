@@ -10,14 +10,12 @@ class CryptoDetailsViewController: UIViewController {
     @IBOutlet weak var detailsView: UIView!
 
     var selectedCurrency: String = ""
-    private var selectedTime: Int = 1
     var logo: UIImage?
     var name: String?
     var price: String?
     var change: String?
     var symbol: String?
     private var chartVC = ChartViewController()
-    private var pick = Int()
 
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
