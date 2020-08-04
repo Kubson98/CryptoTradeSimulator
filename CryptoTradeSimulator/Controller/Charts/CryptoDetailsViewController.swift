@@ -10,14 +10,14 @@ class CryptoDetailsViewController: UIViewController {
     @IBOutlet weak var detailsView: UIView!
 
     var selectedCurrency: String = ""
-    var selectedTime: Int = 1
+    private var selectedTime: Int = 1
     var logo: UIImage?
     var name: String?
     var price: String?
     var change: String?
     var symbol: String?
-    var chartVC = ChartViewController()
-    var pick = Int()
+    private var chartVC = ChartViewController()
+    private var pick = Int()
 
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
@@ -26,7 +26,7 @@ class CryptoDetailsViewController: UIViewController {
         ChartModel(hours: 0, days: 0, months: -1, years: 0, interval: "2h"),
         ChartModel(hours: 0, days: 0, months: 0, years: -1, interval: "1d")]
 
-    var cryptoDetails: [CryptoCurrencyData] = []
+    private var cryptoDetails: [CryptoCurrencyData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

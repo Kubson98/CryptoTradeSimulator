@@ -10,11 +10,11 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var balanceView: UIView!
 
-    var viewModel = PocketViewModel()
-    let productID = "Kuba.CryptoTradeSimulator.ExtraMoney"
-    var vcPrices = PricesViewController()
-    var userId = Auth.auth().currentUser?.uid
-    var coinManager = CoinManager()
+    private var viewModel = PocketViewModel()
+    private let productID = "Kuba.CryptoTradeSimulator.ExtraMoney"
+    private var vcPrices = PricesViewController()
+    private var userId = Auth.auth().currentUser?.uid
+    private var coinManager = CoinManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBalanceView(view: balanceView)
@@ -25,7 +25,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(UINib(nibName: "PocketTableViewCell", bundle: nil), forCellReuseIdentifier: "pocketCell")
     }
 
-    func configureBalanceView(view: UIView) {
+    private func configureBalanceView(view: UIView) {
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.systemGray2.cgColor
         view.layer.shadowRadius = 4
@@ -62,7 +62,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // MARK: - SHOW PORTFOLIO
 
-    func showPortfolio() {
+    private func showPortfolio() {
         viewModel.drawPortfolio(tableView: tableView, accountLabel: accountBalance)
     }
 

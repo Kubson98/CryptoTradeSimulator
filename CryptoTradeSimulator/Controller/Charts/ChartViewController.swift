@@ -6,8 +6,7 @@ import TinyConstraints
 class ChartViewController: UIViewController, ChartViewDelegate {
 
     var selectedCurrency: String = ""
-    var changeTime = -365
-    var highlight: Highlight?
+    private var yValues: [ChartDataEntry] = []
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .systemBackground
@@ -16,6 +15,10 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureChartView()
+    }
+    
+    private func configureChartView() {
         view.addSubview(lineChartView)
         lineChartView.centerInSuperview()
         lineChartView.width(to: view)
@@ -30,10 +33,8 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         lineChartView.doubleTapToZoomEnabled = false
         setData()
     }
-
-    var yValues: [ChartDataEntry] = []
-
-    func setData() {
+    
+    private func setData() {
         let set1 = LineChartDataSet(entries: yValues, label: nil)
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
@@ -46,7 +47,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 
     }
 
-    func getID(nameCMC: String, _ completion: @escaping (Result<String, Error>) -> Void) {
+    private func getID(nameCMC: String, _ completion: @escaping (Result<String, Error>) -> Void) {
         Coinpaprika.API.coins().perform { (response) in
             switch response {
             case .success(let coins):
@@ -100,8 +101,8 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                 print(Error.self)
             }
         }
-
     }
+    
     var chartTime: [ChartModel] = [
         ChartModel(hours: -1, days: 0, months: 0, years: 0, interval: "5m"),
         ChartModel(hours: -24, days: 0, months: 0, years: 0, interval: "5m"),

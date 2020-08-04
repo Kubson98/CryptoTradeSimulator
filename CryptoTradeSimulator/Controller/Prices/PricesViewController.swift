@@ -14,9 +14,9 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
         priceArray = values
     }
 
-    let detailsVC = CryptoDetailsViewController()
-    var coinManager = CoinManager()
-    var priceArray: [CryptoCurrencyData] = []
+   private let detailsVC = CryptoDetailsViewController()
+   private var coinManager = CoinManager()
+   private var priceArray: [CryptoCurrencyData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
 
     }
     // MARK: - CHANGE COLORS CHANGE 24H PRICE
-    func changesColors(value: Double, change: UILabel) {
+   private func changesColors(value: Double, change: UILabel) {
         if value > 0 {
             change.textColor = UIColor(red: 0.00, green: 0.55, blue: 0.01, alpha: 1.00)
             change.text = ("+\(change.text!)")

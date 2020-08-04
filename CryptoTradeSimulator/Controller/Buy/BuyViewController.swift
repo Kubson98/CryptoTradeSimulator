@@ -10,15 +10,15 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var buyButtonView: UIView!
     @IBOutlet weak var sellButtonView: UIView!
     @IBOutlet weak var logoPickerView: UIPickerView!
-    var price = Double()
-    var myLogos = [CryptoCurrencyData]()
-    var vc = CoinManager()
-    var pocketVC = PocketViewController()
-    var viewModel = PocketViewModel()
+    private var price = Double()
+    private var myLogos = [CryptoCurrencyData]()
+    private var coinManager = CoinManager()
+    private var pocketVC = PocketViewController()
+    private var viewModel = PocketViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vc.delegate = self
+        coinManager.delegate = self
         logoPickerView.delegate = self
         logoPickerView.dataSource = self
         resultPrice.delegate = self
@@ -141,7 +141,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        vc.getCoinPrice()
+        coinManager.getCoinPrice()
         repeat {
             logoPickerView.reloadAllComponents()
         } while myLogos.count == 0

@@ -8,7 +8,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var registerButton: UIView!
 
-    let buyVC = BuyViewController()
+    private let buyVC = BuyViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController {
     }
 
     // MARK: - Register Button Pressed
+    
     @IBAction func registerPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             if passwordTextField.text == repeatPasswordTextField.text {

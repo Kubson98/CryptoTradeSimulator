@@ -7,7 +7,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInButton: UIView!
     @IBOutlet weak var signUpButton: UIView!
 
-    var buyVC = BuyViewController()
+    private var buyVC = BuyViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
