@@ -1,5 +1,7 @@
 import UIKit
 import Firebase
+import SCLAlertView
+
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
@@ -20,8 +22,8 @@ class LoginViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
 
             Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
-                if let e = error {
-                    print(e)
+                if (error != nil) {
+                    SCLAlertView().showError("Unfortunately!", subTitle: "Login / Password is incorrect")
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         self.performSegue(withIdentifier: "goToApp", sender: self)
