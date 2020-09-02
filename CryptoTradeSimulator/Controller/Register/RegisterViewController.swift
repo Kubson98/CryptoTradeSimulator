@@ -21,15 +21,14 @@ class RegisterViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
             if passwordTextField.text == repeatPasswordTextField.text {
                 Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                    if let e = error {
-                        print(e)
+                    if (error != nil) {
+                        SCLAlertView().showError("Unfortunately!", subTitle: "Passwords should have 6 characters!")
                     } else {
                         let appearance = SCLAlertView.SCLAppearance(
                             showCloseButton: false
                         )
                         let alertView = SCLAlertView(appearance: appearance)
-                        let alert = alertView
-                                        .showSuccess("Congratulations!", subTitle: "You joined to Crypto Trade Simulator")
+                        let alert = alertView.showSuccess("Congratulations!", subTitle: "You joined to Crypto Trade Simulator")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                             self?.performSegue(withIdentifier: "reggoToApp", sender: self)
                         }
