@@ -1,6 +1,6 @@
 # CryptoTradeSimulator
   1. Firebase
-    	 - Authentication
+    	  - Authentication
    	 - Database
   2. CocoaPods
 	  - Charts
