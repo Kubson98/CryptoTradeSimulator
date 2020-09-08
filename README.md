@@ -1,4 +1,6 @@
-# CryptoTradeSimulator
+## CryptoTradeSimulator
+
+# The application allows the user to simulate investing in selected cryptocurrencies
   1. Firebase
    	 - Database
 	 - Authentication
