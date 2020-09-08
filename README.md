@@ -13,6 +13,10 @@
 	  - Firebase/Firestore
 	  - SCLAlertView
 	  - IQKeyboardManagerSwift
+  3. Design Patterns
+  	  - MVC
+	  - Delegate Pattern
+	  - MVVM
 
 
 ![alt tag](https://user-images.githubusercontent.com/45259348/92474443-255a5e80-f1dc-11ea-91a1-4ce74e9b6f60.png)
