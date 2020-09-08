@@ -17,7 +17,9 @@
   	  - MVC
 	  - Delegate Pattern
 	  - MVVM
-
+  4. JSON
+  5. Auto Layout
+  6. Apple Pay
 
 ![alt tag](https://user-images.githubusercontent.com/45259348/92474443-255a5e80-f1dc-11ea-91a1-4ce74e9b6f60.png)
 
