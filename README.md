@@ -1,4 +1,17 @@
 # CryptoTradeSimulator
+  1. Firebase
+    - Authentication
+    - Database
+  2. CocoaPods
+    - CoinpaprikaAPI
+	  - Charts
+	  - TinyConstraints
+	  - Firebase/Auth
+	  - Firebase/Database
+	  - Firebase/Firestore
+	  - SCLAlertView
+	  - IQKeyboardManagerSwift
+
 
 ![alt tag](https://user-images.githubusercontent.com/45259348/92474443-255a5e80-f1dc-11ea-91a1-4ce74e9b6f60.png)
 
