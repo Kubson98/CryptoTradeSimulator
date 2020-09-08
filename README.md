@@ -1,7 +1,7 @@
 # CryptoTradeSimulator
   1. Firebase
-    	  - Authentication
    	 - Database
+	 - Authentication
   2. CocoaPods
 	  - Charts
 	  - pod CoinpaprikaAPI
