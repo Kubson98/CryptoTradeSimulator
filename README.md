@@ -6,7 +6,7 @@
 	 - Authentication
   2. CocoaPods
 	  - Charts
-	  - pod CoinpaprikaAPI
+	  - CoinpaprikaAPI
 	  - TinyConstraints
 	  - Firebase/Auth
 	  - Firebase/Database
