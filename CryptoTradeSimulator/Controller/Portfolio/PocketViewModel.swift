@@ -135,17 +135,17 @@ class PocketViewModel {
     
     func drawPortfolio(tableView: UITableView, accountLabel: UILabel) {
         databaseRef = Database.database().reference()
-        var iterator = 0
+        var i = 0
         databaseHandle = databaseRef.child(userId!).observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value as? [String: Double] {
                 for (key, value) in item {
                     self.nameCrypto.append(key)
                     self.countCrypto.append(value)
-                    self.valuesArray.append(self.pricesArray[iterator].quote.USD.price * self.countCrypto[iterator])
+                    self.valuesArray.append(self.pricesArray[i].quote.USD.price * self.countCrypto[i])
                     let sum = self.valuesArray.reduce(0, +)
                     accountLabel.text = String(format: "%.2f", sum)
                     accountLabel.text = String("\(accountLabel.text!)$")
-                    iterator += 1
+                    i += 1
                     tableView.reloadData()
                 }
             }

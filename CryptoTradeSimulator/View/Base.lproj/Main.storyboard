@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NdF-en-bmu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NdF-en-bmu">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -58,6 +58,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="cBu-hm-aCb">
+                                                <rect key="frame" x="146" y="63" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -98,6 +102,7 @@
                         <outlet property="accountBalance" destination="1yh-D5-lQW" id="hfp-al-jy5"/>
                         <outlet property="accountLabel" destination="1yh-D5-lQW" id="Bcq-Rb-nYY"/>
                         <outlet property="balanceView" destination="Gk3-H5-2bq" id="HFR-BA-cee"/>
+                        <outlet property="loadingActivity" destination="cBu-hm-aCb" id="X2I-cN-dMw"/>
                         <outlet property="tableView" destination="7qF-jy-3d9" id="rRq-KB-qUH"/>
                     </connections>
                 </viewController>
@@ -185,6 +190,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Itv-pb-5Hm">
+                                                <rect key="frame" x="85" y="75" width="244" height="152"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -201,6 +210,7 @@
                         <viewLayoutGuide key="safeArea" id="1hr-pX-sHp"/>
                     </view>
                     <connections>
+                        <outlet property="activityLoading" destination="Itv-pb-5Hm" id="QQv-g1-qJ0"/>
                         <outlet property="emailTextField" destination="qpW-nd-d2w" id="S52-CQ-gnq"/>
                         <outlet property="passwordTextField" destination="CmH-qN-DOB" id="0EV-Tv-zSc"/>
                         <outlet property="signInButton" destination="JNE-7Q-wcH" id="V1a-ws-86U"/>
@@ -280,6 +290,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="kKQ-jj-FcW">
+                                                <rect key="frame" x="85" y="26" width="245" height="203"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -297,6 +311,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8fh-Gv-JyN"/>
                     <connections>
+                        <outlet property="activityLoading" destination="kKQ-jj-FcW" id="mLu-zH-gru"/>
                         <outlet property="emailTextField" destination="fBJ-RV-lkp" id="iOc-Q4-zaw"/>
                         <outlet property="passwordTextField" destination="a1e-Nh-EGF" id="2Ys-eV-dNl"/>
                         <outlet property="registerButton" destination="fCL-Xt-eA2" id="lLU-BK-72z"/>

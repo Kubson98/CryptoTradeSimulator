@@ -9,7 +9,8 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var balanceView: UIView!
-
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
+    
     private var viewModel = PocketViewModel()
     private let productID = "Kuba.CryptoTradeSimulator.ExtraMoney"
     private var vcPrices = PricesViewController()
@@ -23,6 +24,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PocketTableViewCell", bundle: nil), forCellReuseIdentifier: "pocketCell")
+        loadingActivity.hidesWhenStopped = true
     }
 
     private func configureBalanceView(view: UIView) {
@@ -84,6 +86,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadingActivity.startAnimating()
         coinManager.getCoinPrice()
         repeat {
             tableView.reloadData()
@@ -98,6 +101,9 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
         }
         showPortfolio()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.loadingActivity.stopAnimating()
+        }
     }
 
     // MARK: - VIEW WILL DISAPPEAR

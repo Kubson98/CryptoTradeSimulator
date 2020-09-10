@@ -35,6 +35,12 @@ DerivedData/
 timeline.xctimeline
 playground.xcworkspace
 CryptoTradeSimulator/ApiKey.swift
+CryptoTradeSimulatorTests
+CryptoTradeSimulatorUITests
+CryptoTradeSimulatorTests/
+CryptoTradeSimulatorUITests/
+CryptoTradeSimulatorTests /
+CryptoTradeSimulatorUITests /
 .swiftlint.yml
 
 # Swift Package Manager

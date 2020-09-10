@@ -7,7 +7,7 @@ protocol CoinManagerDelegate: AnyObject {
 
 class CoinManager {
     weak var delegate: CoinManagerDelegate?
-    let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=60"
+    let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=150"
     
     // MARK: - URL ADRESS
     func getCoinPrice() {
