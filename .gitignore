@@ -41,7 +41,7 @@ CryptoTradeSimulatorTests/
 CryptoTradeSimulatorUITests/
 CryptoTradeSimulatorTests /
 CryptoTradeSimulatorUITests /
-.swiftlint.yml
+#.swiftlint.yml
 
 # Swift Package Manager
 #
