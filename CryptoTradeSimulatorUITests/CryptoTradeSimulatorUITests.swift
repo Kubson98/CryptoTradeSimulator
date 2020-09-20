@@ -27,10 +27,7 @@ class CryptoTradeSimulatorUITests: XCTestCase {
         app/*@START_MENU_TOKEN@*/.staticTexts["Sign In"]/*[[".buttons[\"Sign In\"].staticTexts[\"Sign In\"]",".staticTexts[\"Sign In\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         let button = app.buttons.staticTexts["Get More $$$"]
         expectation(for: NSPredicate(format: "exists == 1"), evaluatedWith: button, handler: nil)
-        
         waitForExpectations(timeout: 10, handler: nil)
-       // app.tabBars.isAccessibilityElement = true
-        //XCTAssertTrue(app.buttons["Get More $$$"].exists)
     }
     
     func testUserRegister() throws {
