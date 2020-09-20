@@ -2,7 +2,6 @@ import UIKit
 import Firebase
 import SCLAlertView
 
-
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -11,30 +10,39 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityLoading: UIActivityIndicatorView!
     
     private var buyVC = BuyViewController()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buyVC.buttonView(button: signInButton)
         buyVC.buttonView(button: signUpButton)
         activityLoading.hidesWhenStopped = true
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
-
+    
     // MARK: - Login Button Pressed
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         signInButton.isHidden = true
         activityLoading.startAnimating()
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                        self.activityLoading.stopAnimating()
-                        self.signInButton.isHidden = false
-                        if error != nil {
-                    SCLAlertView().showError("Unfortunately!", subTitle: "Login / Password is incorrect")
-                } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    self.activityLoading.stopAnimating()
+                    self.signInButton.isHidden = false
+                    if error != nil {
+                        SCLAlertView().showError("Unfortunately!", subTitle: "Login / Password is incorrect")
+                    } else {
                         self.performSegue(withIdentifier: "goToApp", sender: self)
+                    }
                 }
-            }
-        )}
+                )}
+        }
     }
 }
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -15,6 +15,9 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         buyVC.buttonView(button: registerButton)
         activityLoading.hidesWhenStopped = true
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        repeatPasswordTextField.delegate = self
     }
     
     // MARK: - Register Button Pressed
@@ -49,5 +52,12 @@ class RegisterViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
