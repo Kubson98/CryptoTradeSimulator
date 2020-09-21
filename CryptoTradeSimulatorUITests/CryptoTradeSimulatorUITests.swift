@@ -27,7 +27,7 @@ class CryptoTradeSimulatorUITests: XCTestCase {
         app/*@START_MENU_TOKEN@*/.staticTexts["Sign In"]/*[[".buttons[\"Sign In\"].staticTexts[\"Sign In\"]",".staticTexts[\"Sign In\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         let button = app.buttons.staticTexts["Get More $$$"]
         expectation(for: NSPredicate(format: "exists == 1"), evaluatedWith: button, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
     }
     
     func testUserRegister() throws {
@@ -52,9 +52,9 @@ class CryptoTradeSimulatorUITests: XCTestCase {
         app.staticTexts["Register"].tap()
         let button = app.buttons.staticTexts["Get More $$$"]
         expectation(for: NSPredicate(format: "exists == 1"), evaluatedWith: button, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
     }
-
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.
