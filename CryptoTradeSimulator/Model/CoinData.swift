@@ -16,7 +16,7 @@ struct Quote: Codable {
 }
 
 struct Usd: Codable {
-    let price: Double
-    let percent_change_1h: Double
-    let percent_change_24h: Double
+    let price: Double?
+    let percent_change_1h: Double?
+    let percent_change_24h: Double?
 }
