@@ -7,7 +7,7 @@ protocol CoinManagerDelegate: AnyObject {
 
 class CoinManager {
     weak var delegate: CoinManagerDelegate?
-    let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=150"
+    let baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=100"
     
     // MARK: - URL ADRESS
     func getCoinPrice() {
@@ -42,7 +42,7 @@ class CoinManager {
             let result = decodedData.data
             return result
         } catch {
-            SCLAlertView().showError("Error!", subTitle: "Something wrong with conect.")
+            SCLAlertView().showError("Error!", subTitle: "Something wrong with connect.")
             return error as! [CryptoCurrencyData]
         }
     }

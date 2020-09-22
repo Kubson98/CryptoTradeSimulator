@@ -141,7 +141,7 @@ class PocketViewModel {
                 for (key, value) in item {
                     self.nameCrypto.append(key)
                     self.countCrypto.append(value)
-                    self.valuesArray.append(self.pricesArray[i].quote.USD.price * self.countCrypto[i])
+                    self.valuesArray.append(self.pricesArray[i].quote.USD.price! * self.countCrypto[i])
                     let sum = self.valuesArray.reduce(0, +)
                     accountLabel.text = String(format: "%.2f", sum)
                     accountLabel.text = String("\(accountLabel.text!)$")

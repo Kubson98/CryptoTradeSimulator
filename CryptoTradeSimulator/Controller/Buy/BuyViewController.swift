@@ -71,7 +71,7 @@ class BuyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         nameCryptoCurr.text = myLogos[row].name
-        price = myLogos[row].quote.USD.price
+        price = myLogos[row].quote.USD.price!
         if let count = Double(countCoins.text!) {
             resultPrice.text = String(format: "%.2f", count*price)
         }

@@ -41,11 +41,11 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
 
         cell.name.text = String(listPrices.name)
         cell.symbol.text = String(listPrices.symbol)
-        cell.price.text = String(format: "%.2f", listPrices.quote.USD.price)
+        cell.price.text = String(format: "%.2f", listPrices.quote.USD.price!)
         cell.price.text = ("\(cell.price.text!)$")
-        cell.change24.text = String(format: "%.2f", listPrices.quote.USD.percent_change_24h)
+        cell.change24.text = String(format: "%.2f", listPrices.quote.USD.percent_change_24h!)
         cell.change24.text = ("\(cell.change24.text!)%")
-        changesColors(value: listPrices.quote.USD.percent_change_24h, change: cell.change24)
+        changesColors(value: listPrices.quote.USD.percent_change_24h!, change: cell.change24)
 
         return cell
     }
@@ -74,9 +74,9 @@ class PricesViewController: UITableViewController, CoinManagerDelegate {
 
             destinationVC.selectedCurrency = cell.name
             destinationVC.name = String(cell.name)
-            destinationVC.change = String(format: "%.2f", cell.quote.USD.percent_change_24h)
+            destinationVC.change = String(format: "%.2f", cell.quote.USD.percent_change_24h!)
             destinationVC.change = String("\(destinationVC.change!)%")
-            destinationVC.price = String(format: "%.2f", cell.quote.USD.price)
+            destinationVC.price = String(format: "%.2f", cell.quote.USD.price!)
             destinationVC.price = String("\(destinationVC.price!)$")
             destinationVC.symbol = cell.symbol
 

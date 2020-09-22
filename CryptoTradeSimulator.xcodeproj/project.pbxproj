@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		61076034E27001072273B4E7 /* Pods_CryptoTradeSimulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EBD80731DDF7FB52929347 /* Pods_CryptoTradeSimulator.framework */; };
-		8C0F851B24964D1B00DFDF6B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */; };
 		8C2A242524D201E8006B9690 /* PocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A242424D201E8006B9690 /* PocketViewModel.swift */; };
 		8C2A242924D443F6006B9690 /* Statics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A242824D443F6006B9690 /* Statics.swift */; };
 		8C3971D92492789B00545826 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3971D82492789B00545826 /* ChartModel.swift */; };
-		8C3B866124D19675005D4C3B /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B866024D19675005D4C3B /* ApiKey.swift */; };
 		8C4512D1247A7D6C00CC763D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512D0247A7D6C00CC763D /* AppDelegate.swift */; };
 		8C4512D3247A7D6C00CC763D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512D2247A7D6C00CC763D /* SceneDelegate.swift */; };
 		8C4512D5247A7D6C00CC763D /* PocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4512D4247A7D6C00CC763D /* PocketViewController.swift */; };
@@ -31,6 +29,8 @@
 		8C8D0921248268B50019B5BE /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8D0920248268B50019B5BE /* ChartViewController.swift */; };
 		8C9548A4250D868F00D2FDC1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9548A3250D868F00D2FDC1 /* StoreKit.framework */; };
 		8CA1580D24AA3D81001239FB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1580C24AA3D81001239FB /* RegisterViewController.swift */; };
+		8CC0C8EA251A354B004CABF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC0C8E9251A354B004CABF1 /* GoogleService-Info.plist */; };
+		8CC0C8EC251A3A6C004CABF1 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0C8EB251A3A6C004CABF1 /* ApiKey.swift */; };
 		8CF536B7249775C5006CE2BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF536B6249775C5006CE2BF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,11 +60,9 @@
 /* Begin PBXFileReference section */
 		43EBD80731DDF7FB52929347 /* Pods_CryptoTradeSimulator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoTradeSimulator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B001E0D543FF3C0677B704 /* Pods-CryptoTradeSimulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTradeSimulator.release.xcconfig"; path = "Target Support Files/Pods-CryptoTradeSimulator/Pods-CryptoTradeSimulator.release.xcconfig"; sourceTree = "<group>"; };
-		8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8C2A242424D201E8006B9690 /* PocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketViewModel.swift; sourceTree = "<group>"; };
 		8C2A242824D443F6006B9690 /* Statics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statics.swift; sourceTree = "<group>"; };
 		8C3971D82492789B00545826 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
-		8C3B866024D19675005D4C3B /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		8C4512CD247A7D6C00CC763D /* CryptoTradeSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTradeSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C4512D0247A7D6C00CC763D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C4512D2247A7D6C00CC763D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +85,8 @@
 		8C8D0920248268B50019B5BE /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		8C9548A3250D868F00D2FDC1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8CA1580C24AA3D81001239FB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8CC0C8E9251A354B004CABF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8CC0C8EB251A3A6C004CABF1 /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		8CF536B6249775C5006CE2BF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CC5587608D448C8293119549 /* Pods-CryptoTradeSimulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoTradeSimulator.debug.xcconfig"; path = "Target Support Files/Pods-CryptoTradeSimulator/Pods-CryptoTradeSimulator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,15 +143,15 @@
 		8C4512CF247A7D6C00CC763D /* CryptoTradeSimulator */ = {
 			isa = PBXGroup;
 			children = (
+				8CC0C8EB251A3A6C004CABF1 /* ApiKey.swift */,
 				8C8A943D247C28C100C91941 /* Model */,
 				8C6E7C2924ACAD9E000E6F98 /* View */,
 				8C6E7C2A24ACADA9000E6F98 /* Controller */,
-				8C0F851A24964D1B00DFDF6B /* GoogleService-Info.plist */,
 				8C4512D0247A7D6C00CC763D /* AppDelegate.swift */,
 				8C4512D2247A7D6C00CC763D /* SceneDelegate.swift */,
 				8C4512DC247A7D6F00CC763D /* Assets.xcassets */,
 				8C4512E1247A7D6F00CC763D /* Info.plist */,
-				8C3B866024D19675005D4C3B /* ApiKey.swift */,
+				8CC0C8E9251A354B004CABF1 /* GoogleService-Info.plist */,
 				8C2A242824D443F6006B9690 /* Statics.swift */,
 			);
 			path = CryptoTradeSimulator;
@@ -347,9 +347,9 @@
 			files = (
 				8C4512E0247A7D6F00CC763D /* LaunchScreen.storyboard in Resources */,
 				8C4512EC247A951100CC763D /* PocketTableViewCell.xib in Resources */,
+				8CC0C8EA251A354B004CABF1 /* GoogleService-Info.plist in Resources */,
 				8C4512DD247A7D6F00CC763D /* Assets.xcassets in Resources */,
 				8C4512D8247A7D6C00CC763D /* Main.storyboard in Resources */,
-				8C0F851B24964D1B00DFDF6B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C4512F0247AA08200CC763D /* PricesViewController.swift in Sources */,
+				8CC0C8EC251A3A6C004CABF1 /* ApiKey.swift in Sources */,
 				8C3971D92492789B00545826 /* ChartModel.swift in Sources */,
 				8C2A242524D201E8006B9690 /* PocketViewModel.swift in Sources */,
 				8C7F7C08248E964A00BC2F89 /* CryptoDetailsViewController.swift in Sources */,
@@ -438,7 +439,6 @@
 				8C4512D1247A7D6C00CC763D /* AppDelegate.swift in Sources */,
 				8C67380A24A4FFF900929E61 /* DealModel.swift in Sources */,
 				8C8A943F247C28E100C91941 /* Manager.swift in Sources */,
-				8C3B866124D19675005D4C3B /* ApiKey.swift in Sources */,
 				8CA1580D24AA3D81001239FB /* RegisterViewController.swift in Sources */,
 				8C4512D3247A7D6C00CC763D /* SceneDelegate.swift in Sources */,
 				8CF536B7249775C5006CE2BF /* LoginViewController.swift in Sources */,

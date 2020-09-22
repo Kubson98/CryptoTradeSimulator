@@ -56,7 +56,7 @@ class PocketViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.logo.image = UIImage(data: data)
         }
         cell.nameLabel.text = viewModel.nameCrypto[indexPath.row]
-        cell.valueLabel.text = String(format: "%.2f", viewModel.countCrypto[indexPath.row] * listPrices.quote.USD.price)
+        cell.valueLabel.text = String(format: "%.2f", viewModel.countCrypto[indexPath.row] * listPrices.quote.USD.price!)
         cell.valueLabel.text = "\(cell.valueLabel.text!)$"
 
         return cell
